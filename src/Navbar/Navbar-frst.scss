@@ -1,0 +1,110 @@
+$colors: (
+		nav-backgrnd: rgb(250, 211, 143),
+		dropdown: rgb(252, 213, 152),
+		login-backgrnd: rgb(250, 196, 138),
+		border: 1px solid black
+);
+
+a {
+	text-decoration: none;
+	color: black;
+}
+
+.navbar-first {
+	display: flex;
+	background-color: whitesmoke;
+	height: 5vh;
+	border-bottom: map-get($colors, border);
+
+	.navbar-logo {
+		align-self: center;
+		margin-left: 50px;
+
+		.logo-pic {
+			width: 35px;
+			height: 35px;
+			border-radius: 5px;
+		}
+	}
+
+	.navbar-pages {
+		display: flex;
+		justify-content: flex-end;
+		align-self: center;
+		width: 90%;
+		height: 100%;
+
+		a {
+			margin-right: 60px;
+			display: flex;
+			align-self: center;
+			font-size: 18px;
+		}
+
+
+		.profile {
+			position: relative;
+			display: inline-block;
+
+			.profile-pic {
+				width: 26px;
+				height: 26px;
+				border-radius: 500px;
+			}
+
+			.title {
+				margin-top: 5px;
+				display: flex;
+				margin-right: 60px;
+				align-items: center;
+				font-size: 18px;
+				height: 80%;
+			}
+
+			.cont {
+				display: none;
+				position: absolute;
+				text-align: center;
+				width: 18vh;
+				height: 5.1vh;
+				background-color: whitesmoke;
+				border-radius: 4px;
+				top: 0;
+				left: -45px;
+
+				.auth-creare {
+					height: 50%;
+					border-radius: 5px;
+				}
+			}
+
+			.title:hover {
+				//background-color: map-get($colors, login-backgrnd);
+				cursor: pointer;
+				//border-radius: 5px;
+			}
+
+			.auth-creare:hover {
+				background-color: rgba(128, 128, 128, 0.1);
+			}
+		}
+
+		.profile:hover {
+			.cont {
+				display: block;
+			}
+		}
+
+		.cos-cumparaturi {
+			height: 80%;
+			align-items: center;
+			border-radius: 5px;
+		}
+
+		//.cos-cumparaturi:hover {
+		//	background-color: map-get($colors, login-backgrnd);
+		//	border-radius: 3px;
+		//}
+	}
+}
+

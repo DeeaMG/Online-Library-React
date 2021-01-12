@@ -1,0 +1,125 @@
+.navbar-second {
+	display: flex;
+	height: 4vh;
+	background-color: rgba(250, 211, 143, 0.5);
+	border-bottom: 1px solid black;
+
+	.contact {
+		display: flex;
+		justify-content: flex-end;
+		align-self: center;
+		width: 83%;
+
+		a {
+			display: flex;
+			font-size: 18px;
+		}
+
+	}
+
+	.produse {
+		position: relative;
+		display: inline-block;
+		margin-left: 25px;
+
+		::-webkit-scrollbar {
+			width: 10px;
+		}
+
+		::-webkit-scrollbar-thumb {
+			background: rgba(250, 211, 143, 0.5);
+			box-shadow: inset 0 0 4px #fdba3f;
+		}
+
+		::-webkit-scrollbar-track {
+			background: #FAD38F;
+			box-shadow: inset 0 0 7px #f5efcc;
+		}
+
+		.title {
+			display: flex;
+			margin-top: 6px;
+			font-size: 18px;
+		}
+
+		.produse-tipuri {
+			display: none;
+			position: absolute;
+			width: 60vh;
+			height: 50vh;
+			background-color: rgba(250, 211, 143, 0.5);
+			border: 1px solid black;
+			top: 4vh;
+			border-radius: 3px;
+		}
+
+		.title:hover {
+			background-color: #c6d7fa;
+			cursor: pointer;
+			border-radius: 3px;
+		}
+	}
+
+	.produse:hover {
+		.produse-tipuri {
+			display: flex;
+
+			.produse-continut {
+				width: 44vh;
+				height: 45vh;
+				margin-left: 5px;
+				margin-top: 5px;
+
+				.elemSubtype {
+					display: flex;
+					height: 30px;
+					margin: 10px;
+
+					a {
+						height: 30px;
+						width: 100%;
+						padding-left: 10px;
+						padding-right: 10px;
+						padding-top: 4px;
+						font-size: 17px;
+					}
+
+					a:hover {
+						cursor: pointer;
+						background-color: rgba(250, 211, 143, 0.5);
+					}
+				}
+			}
+
+			.sidebar {
+				display: flex;
+				flex-direction: column;
+				width: 35vh;
+				height: 99.5%;
+				overflow-x: hidden;
+				padding-top: 3px;
+				border-right: 1px solid rgba(253, 186, 63, 0.3);
+				//background-color: #ffe4c4;
+
+				.elem {
+					display: flex;
+					padding-top: 10px;
+					height: 4vh;
+					margin-bottom: 3px;
+					background-color: rgba(250, 211, 143, 0.2);
+
+					a {
+						height: 4vh;
+						padding-left: 20px;
+						font-size: 17px;
+						width: 100%;
+					}
+				}
+
+				.elem:hover {
+					background-color: rgba(250, 211, 143, 0.5);
+				}
+			}
+		}
+	}
+}
