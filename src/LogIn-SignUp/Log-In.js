@@ -11,7 +11,7 @@ class LogIn extends Component
 	{
 		return (
 		<div className="cont">
-			<h2>Autentificare</h2>
+			<h2>Log in</h2>
 
 			<div className={'input-box'}>
 				<label><EmailIcon/>E-mail</label>
@@ -20,7 +20,7 @@ class LogIn extends Component
 				<label><VpnKeyIcon/>Password</label>
 				<input type={'password'}/>
 
-				<input type={'submit'} className={'submit'}/>
+				<input type={'submit'} className={'submit'} value={'Log in'}/>
 			</div>
 		</div>
 		);

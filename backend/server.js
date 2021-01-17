@@ -16,7 +16,9 @@ mongoose.connection.once('open', () => {
 	console.log('MongoDB connection established successfully');
 });
 
+const userData = require('./route.js');
+app.use('/createuser', userData);
+
 app.listen(port, () => {
 	console.log(`Server is running on port: ${port}`);
 });
-

@@ -1,11 +1,19 @@
 import './Navbar/Navbar-secnd.scss';
-import React from "react";
+import React, { Component } from "react";
 
 
-function Products() {
-	let mouseEnter = (element) => {
+class Products extends Component 
+{
+	constructor(props) 
+	{
+		super(props);
+	}
+
+	mouseEnter(element) 
+	{
 		// console.log('In mouseover()');
-		if (element) {
+		if (element) 
+		{
 			// console.log('in if mouseEnter() element')
 			let elem = document.getElementById(element);
 			// console.log(element);
@@ -13,7 +21,8 @@ function Products() {
 			continut.innerHTML = '';
 			let elemHTML = "<div class='elemSubtype'><a href='https://www.emag.ro/' target='_blank' rel='noopener noreferrer'>";
 
-			if(elem) {
+			if(elem) 
+			{
 				for(let i = 0; i <= 5; i++)
 				{
 					continut.innerHTML += elemHTML + element + " elem" + i + "</a></div>";
@@ -24,49 +33,37 @@ function Products() {
 		}
 	}
 
-	// let mouseLeave = (element) => {
-	// 	console.log('In mouseLeave()');
-	// 	if(element){
-	// 		console.log('in if mouseLeave() element')
-	// 		let elem = document.getElementsByClassName(element);
-	// 		console.log(element);
-	// 		let continut = document.getElementById('continut');
-	//
-	// 		if(elem) {
-	// 			console.log('In if mouseLeave elem');
-	// 			continut.innerHTML = '';
-	// 		}
-	// 	}
-	// }
+	render()
+	{
+		return (
+			<div className={'sidebar'}>
+				<div className={'elem'} id={'type1'}>
+					<a href={'https://www.emag.ro/'} target='_blank' rel='noopener noreferrer' onMouseEnter={() => this.mouseEnter('type1')}>element1</a>
+				</div>
 
-	return (
-		<div className={'sidebar'}>
-			<div className={'elem'} id={'type1'}>
-				<a href={'https://www.emag.ro/'} target='_blank' rel='noopener noreferrer' onMouseEnter={() => mouseEnter('type1')}>element1</a>
+				<div className={'elem'} id={'type2'}>
+					<a href={'https://www.emag.ro/'} target='_blank' rel='noopener noreferrer' onMouseEnter={() => this.mouseEnter('type2')}>element2</a>
+				</div>
+
+				<div className={'elem'} id={'type3'}>
+					<a href={'https://www.emag.ro/'} target='_blank' rel='noopener noreferrer' onMouseEnter={() => this.mouseEnter('type3')}>element3</a>
+				</div>
+
+				<div className={'elem'} id={'type4'}>
+					<a href={'https://www.emag.ro/'} target='_blank' rel='noopener noreferrer' onMouseEnter={() => this.mouseEnter('type4')}>Tip4</a>
+				</div>
+
+				<div className={'elem'} id={'type5'}>
+					<a href={'https://www.emag.ro/'} target='_blank' rel='noopener noreferrer' onMouseEnter={() => this.mouseEnter('type5')}>Tip5</a>
+				</div>
+
+				<div className={'elem'} id={'type6'}>
+					<a href={'https://www.emag.ro/'} target='_blank' rel='noopener noreferrer' onMouseEnter={() => this.mouseEnter('type6')}>Tip6</a>
+				</div>
+
 			</div>
-
-			<div className={'elem'} id={'type2'}>
-				<a href={'https://www.emag.ro/'} target='_blank' rel='noopener noreferrer' onMouseEnter={() => mouseEnter('type2')}>element2</a>
-			</div>
-
-			<div className={'elem'} id={'type3'}>
-				<a href={'https://www.emag.ro/'} target='_blank' rel='noopener noreferrer' onMouseEnter={() => mouseEnter('type3')}>element3</a>
-			</div>
-
-			<div className={'elem'} id={'type4'}>
-				<a href={'https://www.emag.ro/'} target='_blank' rel='noopener noreferrer' onMouseEnter={() => mouseEnter('type4')}>Tip4</a>
-			</div>
-
-			<div className={'elem'} id={'type5'}>
-				<a href={'https://www.emag.ro/'} target='_blank' rel='noopener noreferrer' onMouseEnter={() => mouseEnter('type5')}>Tip5</a>
-			</div>
-
-			<div className={'elem'} id={'type6'}>
-				<a href={'https://www.emag.ro/'} target='_blank' rel='noopener noreferrer' onMouseEnter={() => mouseEnter('type6')}>Tip6</a>
-			</div>
-
-		</div>
-	);
+		);
+	}
 }
 
 export default Products;

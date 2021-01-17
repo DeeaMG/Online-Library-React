@@ -15,7 +15,7 @@ class NavbarSecnd extends Component
 			<div className="app">
 				<div className={'navbar-second'}>
 					<div className={'produse'}>
-						<div className={'title'}><ViewHeadlineIcon/>Produse</div>
+						<div className={'title'}><ViewHeadlineIcon/>Products</div>
 						<div className={'produse-tipuri'}>
 							<Products/>
 							<div className={'produse-continut'} id={'continut'}> </div>
