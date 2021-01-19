@@ -3,7 +3,7 @@ import "./Navbar-frst.scss";
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import PersonIcon from '@material-ui/icons/Person';
 import logo from '../images/logo.gif'
-import {HashRouter, NavLink} from "react-router-dom";
+import {BrowserRouter as Router, NavLink} from "react-router-dom";
 
 
 class NavbarFrst extends Component
@@ -11,7 +11,7 @@ class NavbarFrst extends Component
 	render() 
 	{
 		return (
-		<HashRouter>
+		<Router forceRefresh={true}>
 			<div className="navbar">
 				<div className={'navbar-first'}>
 					<div className={'navbar-logo'}><NavLink exact to={'/'}><img src={logo} alt={'Not found'} className={'logo-pic'}/></NavLink></div>
@@ -27,7 +27,7 @@ class NavbarFrst extends Component
 					</div>
 				</div>
 			</div>
-		</HashRouter>
+		</Router>
 		);
 	}
 }

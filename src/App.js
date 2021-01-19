@@ -6,7 +6,7 @@ import SignUp from "./LogIn-SignUp/Sign-up";
 import Home from "./Home/Home";
 import CosCumparaturi from "./Cos-Cumparaturi/Cos-Cumparaturi";
 import Contact from "./Contact/Contact";
-import {HashRouter, Route} from "react-router-dom";
+import {BrowserRouter as Router, Route} from "react-router-dom";
 
 
 class App extends Component
@@ -14,7 +14,7 @@ class App extends Component
 	render()
 	{
 		return (
-			<HashRouter>
+			<Router forceRefresh={true}>
 				<div className="app">
 					<NavbarFrst/>
 					<div className={'pages'}>
@@ -25,7 +25,7 @@ class App extends Component
 						<Route path={'/contact'} component={Contact}/>
 					</div>
 				</div>
-			</HashRouter>
+			</Router>
 		);
 	}
 }

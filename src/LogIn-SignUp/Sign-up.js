@@ -18,22 +18,16 @@ class SignUp extends Component
 		}
 	}
 
-	componentDidMount() {
-		axios.get('http://localhost:5000/createuser/')
-		  .then(response => {
-			if (response.data.length > 0) {
-				console.log('GET')
-			  this.setState({
-				email: response.data.email,
-				pass: response.data.pass,
-				verifyPass: response.data.verifyPass
-			  })
-			  console.log(this.state)
-			}
-		  })
-		  .catch((error) => {
-			console.log(error);
-		  })
+	URLmsg = (cleanURL) => {
+		if(window.location.href.includes("?&emailTaken") || window.location.href.includes("?&err=passNotMatching")) 
+		{
+			if(cleanURL) {window.location = '/log-in';}
+		}
+		else
+		{
+			let url = window.location.href + "?&emailTaken";
+			window.location.href = url;
+		}
 	}
 
 	addEmail = (event) => {
@@ -54,6 +48,12 @@ class SignUp extends Component
 		  });
 	}
 
+	postData = ( addData ) => {
+		axios.post('http://localhost:5000/createuser/add', addData)
+		.then(res => console.log(res.data))
+		.catch((error) => {console.log("POST ERROR: ", error);});
+	}
+
 	onSubmit = (event) => {
 		event.preventDefault();
 
@@ -66,22 +66,33 @@ class SignUp extends Component
 
 			console.log(addData);
 
-			axios.post('http://localhost:5000/createuser/add', addData)
-			.then(res => console.log(res.data)).catch((error) => {
-				console.log("Error is: ", error);
-			});
+			axios.get('http://localhost:5000/createuser/').then(response => {
+				console.log(response.data);
+				if (response.data.length) 
+				{
+					let foundCount = 0;
 
-			window.location = '/#/log-in'
+					response.data.forEach((_, i) => {
+						if(this.state.email === response.data[i].email) {foundCount += 1};
+					})
+		
+					if(foundCount) 
+					{
+						this.URLmsg(false);
+					}
+
+					else {this.postData(addData); this.URLmsg(true)};
+				}
+
+				else {this.postData(addData); this.URLmsg(true)};
+			})
+			.catch((error) => {console.log('GET ERROR: ', error);})
 		}
 		else
 		{
-			// window.location.reload();
-			let url = window.location.href;
-			url += "?&err=passwords-didn't-match&email=" + this.state.email;
+			let url = window.location.href + "?&err=passNotMatching";
 			window.location.href = url;
 		}
-
-    	// window.location = '/';
 	}
 
 	render()
