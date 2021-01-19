@@ -20,12 +20,22 @@
 		}
 
 		input {
+			height: 20px;
+			width: 220px;
 			margin-top: 5px;
 			margin-bottom: 25px;
+			border-radius: 10px;
 		}
 
 		.submit {
 			width: 100px;
+			margin-top: 5px;
+			margin-bottom: 25px;
+			border-radius: 10px;
+		}
+
+		.inputs {
+			width: 220px;
 		}
 	}
 

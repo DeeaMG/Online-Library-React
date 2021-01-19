@@ -104,15 +104,15 @@ class SignUp extends Component
 
 				<div className={'input-box'}>
 					<label><EmailIcon/>E-mail</label>
-					<input type={'email'} onChange={this.addEmail}/>
+					<input type={'email'} onChange={this.addEmail} className={'inputs'}/>
 
 					<label><VpnKeyIcon/>Password</label>
-					<input type={'password'} onChange={this.addPass}/>
+					<input type={'password'} onChange={this.addPass} className={'inputs'}/>
 
 					<label><VpnKeyIcon/>Verify password</label>
-					<input type={'password'} onChange={this.verifyPass}/>
+					<input type={'password'} onChange={this.verifyPass} className={'inputs'}/>
 
-					<input type='submit' value={'Sign up'}/>
+					<input type='submit' value={'Sign up'} className={'submit'}/>
 				</div>
 			</form>
 		</div>

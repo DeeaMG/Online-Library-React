@@ -4,19 +4,11 @@ import React, { Component } from "react";
 
 class Products extends Component 
 {
-	constructor(props) 
-	{
-		super(props);
-	}
-
 	mouseEnter(element) 
 	{
-		// console.log('In mouseover()');
 		if (element) 
 		{
-			// console.log('in if mouseEnter() element')
 			let elem = document.getElementById(element);
-			// console.log(element);
 			let continut = document.getElementById('continut');
 			continut.innerHTML = '';
 			let elemHTML = "<div class='elemSubtype'><a href='https://www.emag.ro/' target='_blank' rel='noopener noreferrer'>";
@@ -27,8 +19,6 @@ class Products extends Component
 				{
 					continut.innerHTML += elemHTML + element + " elem" + i + "</a></div>";
 				}
-				// console.log('In if mouseover elem');
-				// console.log(continut)
 			}
 		}
 	}
