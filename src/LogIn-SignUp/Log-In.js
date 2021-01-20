@@ -32,33 +32,27 @@ class LogIn extends Component
 
 	onSubmit = () => {
 		axios.get('http://localhost:5000/createuser/').then(response => {
-				console.log(response.data);
-				if (response.data.length) 
-				{
-					let foundCount = false;
-					let email = this.state.email;
-					let pass = this.state.pass;
+			console.log(response.data);
+			if (response.data.length) 
+			{
+				let email = this.state.email;
+				let pass = this.state.pass;
 
-					response.data.forEach((_, i) => {
-						console.log('FOR RESPONSE!!!!');
-						if(email !== response.data[i].email) {
-							console.log('hereeee no email');
-							alert('You entered an invalid email. Please retry.');
-						}
-						else if(pass !== response.data[i].pass) {
-							console.log('hereeee no pass');
-							alert('Your password is incorect. Please retry.');
-						}						
-						else if(email === response.data[i].email && pass === response.data[i].pass) 
-						{
-							foundCount = true;
-							console.log('Everything is ok!');
-							window.location = './';
-						}
-					})
-				}
-			})
-			.catch((error) => {console.log('GET ERROR: ', error);})
+				response.data.forEach((_, i) => {
+					if(email !== response.data[i].email) {
+						alert('You entered an invalid email. Please retry.');
+					}
+					else if(pass !== response.data[i].password) {
+						alert('Your password is incorect. Please retry.');
+					}						
+					else if(email === response.data[i].email && pass === response.data[i].password) 
+					{
+						window.location = '/';
+					}
+				})
+			}
+		})
+		.catch((error) => {console.log('GET ERROR: ', error);})
 	}
 
 	render()
@@ -75,7 +69,7 @@ class LogIn extends Component
 						<label><VpnKeyIcon/>Password</label>
 						<input type={'password'} onChange={this.getPass} className={'inputs'}/>
 
-						<button className={'submit'}>Log in</button>
+						<input type='submit' value={'Log in'} className={'submit'}/>
 					</div>
 				</form>
 			</div>
