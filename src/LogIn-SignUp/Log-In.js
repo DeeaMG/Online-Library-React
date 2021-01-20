@@ -30,23 +30,38 @@ class LogIn extends Component
 		  });
 	}
 
-	onSubmit = () => {
+	showErrMsg = (errShowInput, session, sessionKey, errOtherInput) => {
+		errShowInput.innerHTML = session;
+		sessionStorage.removeItem(sessionKey);
+		errOtherInput.innerHTML = '';
+	}
+
+	onSubmit = (event) => {
+		event.preventDefault();
+
+		sessionStorage['errEmail'] = 'Your email is incorrect. Please retry.';
+		sessionStorage['errPass'] = 'Your password is incorrect. Please retry.';
+
+		let email = this.state.email;
+		let pass = this.state.pass;
+
+		let incorectEmail = document.getElementById('incorectMsgEmail');
+		let incorectPass = document.getElementById('incorectMsgPass');
+
 		axios.get('http://localhost:5000/createuser/').then(response => {
 			console.log(response.data);
 			if (response.data.length) 
 			{
-				let email = this.state.email;
-				let pass = this.state.pass;
-
 				response.data.forEach((_, i) => {
 					if(email !== response.data[i].email) {
-						alert('You entered an invalid email. Please retry.');
+						this.showErrMsg(incorectEmail, sessionStorage['errEmail'], 'errPass', incorectPass);
 					}
 					else if(pass !== response.data[i].password) {
-						alert('Your password is incorect. Please retry.');
+						this.showErrMsg(incorectPass, sessionStorage['errPass'], 'errEmail', incorectEmail);
 					}						
 					else if(email === response.data[i].email && pass === response.data[i].password) 
 					{
+						sessionStorage.clear();
 						window.location = '/';
 					}
 				})
@@ -57,7 +72,7 @@ class LogIn extends Component
 
 	render()
 	{
-		return (
+		return (                            
 			<div className='logare'>
 				<form className="cont" onSubmit={this.onSubmit}>
 					<h2>Log in</h2>
@@ -65,9 +80,11 @@ class LogIn extends Component
 					<div className={'input-box'}>
 						<label><EmailIcon/>E-mail</label>
 						<input type={'email'} onChange={this.getEmail} className={'inputs'}/>
+						<p className={'incorectMsg'} id={'incorectMsgEmail'}>{sessionStorage['errMail']}</p>
 
 						<label><VpnKeyIcon/>Password</label>
 						<input type={'password'} onChange={this.getPass} className={'inputs'}/>
+						<p className={'incorectMsg'} id={'incorectMsgPass'}>{sessionStorage['errPass']}</p>
 
 						<input type='submit' value={'Log in'} className={'submit'}/>
 					</div>
