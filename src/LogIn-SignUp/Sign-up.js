@@ -19,6 +19,8 @@ class SignUp extends Component
 			pass: '',
 			verifyPass: ''
 		}
+
+		this.minLengthPass = 8;
 	}
 
 	addEmail = (event) => 
@@ -58,22 +60,28 @@ class SignUp extends Component
 
 	onSubmit = (event) => 
 	{
-		console.log('ON SUBMIT!!!!!!!');
 		event.preventDefault();
 		
+		// Input fields
 		let incorrectEmail = document.getElementById('incorrectMsgEmail');
 		let incorrectPass = document.getElementById('incorrectMsgPass');
-		
-		incorrectEmail.innerHTML = '';
-		incorrectPass.innerHTML = '';
 
+		// Email errors
 		sessionStorage['errMsgEmailSgUp'] = 'Email address already in use';
-		sessionStorage['errMsgPassSgUp'] = 'Passwords must match';
 		sessionStorage['errNoEmail'] = 'Enter your email';
+
+		// Password errors
+		sessionStorage['errMsgPassMatch'] = 'Passwords must match';
+		sessionStorage['errMsgPassLength'] = 'Password must be 8 characters long';
 
 		if(this.state.email)
 		{
-			if(this.state.pass === this.state.verifyPass)
+			if(this.state.pass.length < this.minLengthPass) 
+			{
+				LogIn.showErrMsg(incorrectPass, sessionStorage['errMsgPassLength'], 'errMsgEmailSgUp', 'errMsgPassSgUp', incorrectEmail, false);
+			}
+
+			else if(this.state.pass === this.state.verifyPass)
 			{
 				const addData = {
 					email: this.state.email,
@@ -88,19 +96,29 @@ class SignUp extends Component
 					{
 						let foundCount = 0;
 
+						// Verify if email already exist in db
 						response.data.forEach((_, i) => {
 							if(this.state.email === response.data[i].email) {foundCount += 1;}
 						})
 
-						if(foundCount) {LogIn.showErrMsg(incorrectEmail, sessionStorage['errMsgEmailSgUp'], 'errMsgPassSgUp', false, incorrectPass, false);}
+						if(foundCount) 
+						{
+							LogIn.showErrMsg(incorrectEmail, sessionStorage['errMsgEmailSgUp'], 'errMsgPassSgUp', false, incorrectPass, false);
+						}
+
 						else {this.postRedirect(addData);};
 					}
 					else {this.postRedirect(addData);};
 				})
 				.catch((error) => {console.log('GET ERROR: ', error);})
 			}
-			else {LogIn.showErrMsg(incorrectPass, sessionStorage['errMsgPassSgUp'], 'errMsgEmailSgUp', false, incorrectEmail, false);}
+
+			else 
+			{
+				LogIn.showErrMsg(incorrectPass, sessionStorage['errMsgPassSgUp'], 'errMsgEmailSgUp', false, incorrectEmail, false);
+			}
 		}
+
 		else {LogIn.showErrMsg(incorrectEmail, sessionStorage['errNoEmail'], 'errMsgPassSgUp', false, incorrectPass, false);}
 	}
 		
@@ -110,7 +128,7 @@ class SignUp extends Component
 		return (
 		<div className={'creare-cont'}>
 			<form className={'cont'} onSubmit={this.onSubmit}>
-				<h2 className={'sign-up'}>Sign up</h2>
+				<h2 className={'customMargin'}>Sign up</h2>
 
 				<div className={'input-box'}>
 					<label><EmailIcon/>E-mail</label>
@@ -122,7 +140,7 @@ class SignUp extends Component
 					<p className={'incorrectMsg'} id={'incorrectMsgPass'}>{sessionStorage['errMsgPassSgUp']}</p>
 
 					<label><VpnKeyIcon/>Verify password</label>
-					<input type={'password'} onChange={this.verifyPass} className={'inputs errMsg'}/>
+					<input type={'password'} onChange={this.verifyPass} className={'inputs customMargin'}/>
 
 					<input type='submit' value={'Sign up'} className={'submit'}/>
 				</div>
