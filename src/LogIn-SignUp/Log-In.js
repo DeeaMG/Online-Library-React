@@ -3,6 +3,7 @@ import "./Log-In.scss";
 import EmailIcon from '@material-ui/icons/Email';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import axios from 'axios';
+
 // import {HashRouter, NavLink, Route} from "react-router-dom";
 
 
@@ -18,56 +19,82 @@ class LogIn extends Component
 		}
 	}
 
-	getEmail = (event) => {
+	getEmail = (event) => 
+	{
 		this.setState({
 			email: event.target.value
 		  });
 	}
 
-	getPass = (event) => {
+	getPass = (event) => 
+	{
 		this.setState({
 			pass: event.target.value
 		  });
 	}
 
-	showErrMsg = (errShowInput, session, sessionKey, errOtherInput) => {
+	static showErrMsg = (errShowInput, session, sessionKeyOne, sessionKeyTwo, errInputOne, errInputTwo) => 
+	{
 		errShowInput.innerHTML = session;
-		sessionStorage.removeItem(sessionKey);
-		errOtherInput.innerHTML = '';
+		sessionStorage.removeItem(sessionKeyOne);
+		if(errInputOne && errInputTwo)
+		{
+			sessionStorage.removeItem(sessionKeyTwo);
+			errInputOne.innerHTML = '';
+			errInputTwo.innerHTML = '';
+		}
+		else{errInputOne.innerHTML = '';}
+		
 	}
 
-	onSubmit = (event) => {
+	onSubmit = (event) => 
+	{
 		event.preventDefault();
 
-		sessionStorage['errEmail'] = 'Your email is incorrect. Please retry.';
-		sessionStorage['errPass'] = 'Your password is incorrect. Please retry.';
 
 		let email = this.state.email;
 		let pass = this.state.pass;
 
-		let incorectEmail = document.getElementById('incorectMsgEmail');
-		let incorectPass = document.getElementById('incorectMsgPass');
+		let incorrectEmail = document.getElementById('incorrectMsgEmail');
+		let incorrectPass = document.getElementById('incorrectMsgPass');
+		let noInputs = document.getElementById('noInputs');
+		
+		sessionStorage['errEmailLogIn'] = 'We cannot find an account with that email address';
+		sessionStorage['errPassLogIn'] = 'Your password is incorrect';
+		sessionStorage['errNoInputs'] = 'Enter your email and password';
 
-		axios.get('http://localhost:5000/createuser/').then(response => {
-			console.log(response.data);
-			if (response.data.length) 
+		if(email && pass)
+		{
+			axios.get('http://localhost:5000/createuser/').then(response => 
 			{
-				response.data.forEach((_, i) => {
-					if(email !== response.data[i].email) {
-						this.showErrMsg(incorectEmail, sessionStorage['errEmail'], 'errPass', incorectPass);
-					}
-					else if(pass !== response.data[i].password) {
-						this.showErrMsg(incorectPass, sessionStorage['errPass'], 'errEmail', incorectEmail);
-					}						
-					else if(email === response.data[i].email && pass === response.data[i].password) 
+				console.log(response.data);
+				if (response.data.length)
+				{
+					response.data.forEach((_, i) => 
 					{
-						sessionStorage.clear();
-						window.location = '/';
-					}
-				})
-			}
-		})
-		.catch((error) => {console.log('GET ERROR: ', error);})
+						if(email !== response.data[i].email)
+						{
+							LogIn.showErrMsg(incorrectEmail, sessionStorage['errEmailLogIn'], 'errPassLogIn', false, incorrectPass, false);
+						}
+						else if(pass !== response.data[i].password)
+						{
+							LogIn.showErrMsg(incorrectPass, sessionStorage['errPassLogIn'], 'errEmailLogIn', false, incorrectEmail, false);
+						}
+						else if(email === response.data[i].email && pass === response.data[i].password) 
+						{
+							sessionStorage.clear();
+							incorrectEmail.innerHTML = '';
+							incorrectPass.innerHTML = '';
+							window.location = '/';
+						}
+					})
+				}
+			})
+			.catch((error) => {console.log('GET ERROR: ', error);})
+		}
+		else {LogIn.showErrMsg(noInputs, sessionStorage['errNoInputs'], 'errEmailLogIn', 'errPassLogIn', incorrectEmail, incorrectPass);}
+
+		
 	}
 
 	render()
@@ -76,15 +103,16 @@ class LogIn extends Component
 			<div className='logare'>
 				<form className="cont" onSubmit={this.onSubmit}>
 					<h2>Log in</h2>
+					<p className={'incorrectMsg errMsg'} id={'noInputs'}>{sessionStorage['errNoInputs']}</p>
 
 					<div className={'input-box'}>
 						<label><EmailIcon/>E-mail</label>
 						<input type={'email'} onChange={this.getEmail} className={'inputs'}/>
-						<p className={'incorectMsg'} id={'incorectMsgEmail'}>{sessionStorage['errMail']}</p>
+						<p className={'incorrectMsg'} id={'incorrectMsgEmail'}>{sessionStorage['errMailLogIn']}</p>
 
 						<label><VpnKeyIcon/>Password</label>
 						<input type={'password'} onChange={this.getPass} className={'inputs'}/>
-						<p className={'incorectMsg'} id={'incorectMsgPass'}>{sessionStorage['errPass']}</p>
+						<p className={'incorrectMsg errMsg'} id={'incorrectMsgPass'}>{sessionStorage['errPassLogIn']}</p>
 
 						<input type='submit' value={'Log in'} className={'submit'}/>
 					</div>
