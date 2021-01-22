@@ -3,6 +3,7 @@ import './Log-In.scss';
 import './Log-In';
 import EmailIcon from "@material-ui/icons/Email";
 import VpnKeyIcon from "@material-ui/icons/VpnKey";
+import PersonIcon from '@material-ui/icons/Person';
 import axios from 'axios';
 import LogIn from "./Log-In";
 
@@ -15,12 +16,20 @@ class SignUp extends Component
 
 		this.state = 
 		{
+			name: '',
 			email: '',
 			pass: '',
 			verifyPass: ''
 		}
 
 		this.minLengthPass = 8;
+	}
+
+	addName = (event) => 
+	{
+		this.setState({
+			name: event.target.value
+		  });
 	}
 
 	addEmail = (event) => 
@@ -53,7 +62,7 @@ class SignUp extends Component
 
 	postRedirect = (addData) => 
 	{
-		window.location = '/log-in';
+		// window.location = '/log-in';
 		this.postData(addData);
 		sessionStorage.clear();
 	}
@@ -63,8 +72,12 @@ class SignUp extends Component
 		event.preventDefault();
 		
 		// Input fields
+		let incorrectName = document.getElementById('incorrectMsgName');
 		let incorrectEmail = document.getElementById('incorrectMsgEmail');
 		let incorrectPass = document.getElementById('incorrectMsgPass');
+
+		// Name errors
+		sessionStorage['errMsgNameSgUp'] = 'Enter your name';
 
 		// Email errors
 		sessionStorage['errMsgEmailSgUp'] = 'Email address already in use';
@@ -74,7 +87,7 @@ class SignUp extends Component
 		sessionStorage['errMsgPassMatch'] = 'Passwords must match';
 		sessionStorage['errMsgPassLength'] = 'Password must be 8 characters long';
 
-		if(this.state.email)
+		if(this.state.email && this.state.name)
 		{
 			if(this.state.pass.length < this.minLengthPass) 
 			{
@@ -84,6 +97,7 @@ class SignUp extends Component
 			else if(this.state.pass === this.state.verifyPass)
 			{
 				const addData = {
+					username: this.state.name,
 					email: this.state.email,
 					pass: this.state.pass
 				};
@@ -119,9 +133,22 @@ class SignUp extends Component
 			}
 		}
 
-		else {LogIn.showErrMsg(incorrectEmail, sessionStorage['errNoEmail'], 'errMsgPassSgUp', false, incorrectPass, false);}
+		else if (!(this.state.email && this.state.name))
+		{
+			LogIn.showErrMsg(incorrectEmail, sessionStorage['errNoEmail'], 'errMsgPassSgUp', false, incorrectPass, false);
+			LogIn.showErrMsg(incorrectName, sessionStorage['errMsgNameSgUp'], 'errMsgPassSgUp', 'errMsgEmailSgUp', incorrectPass, incorrectEmail);
+		}
+
+		else if(!this.state.email)
+		{
+			LogIn.showErrMsg(incorrectEmail, sessionStorage['errNoEmail'], 'errMsgPassSgUp', false, incorrectPass, false);
+		}
+
+		else if(!this.state.name)
+		{
+			LogIn.showErrMsg(incorrectName, sessionStorage['errMsgNameSgUp'], 'errMsgPassSgUp', 'errMsgEmailSgUp', incorrectPass, incorrectEmail);
+		}
 	}
-		
 
 	render()
 	{
@@ -131,6 +158,10 @@ class SignUp extends Component
 				<h2 className={'customMargin'}>Sign up</h2>
 
 				<div className={'input-box'}>
+					<label><PersonIcon/>Full name</label>
+					<input type={'text'} onChange={this.addName} className={'inputs'}/>
+					<p className={'incorrectMsg'} id={'incorrectMsgName'}>{sessionStorage['errMsgNameSgUp']}</p>
+
 					<label><EmailIcon/>E-mail</label>
 					<input type={'email'} onChange={this.addEmail} className={'inputs'}/>
 					<p className={'incorrectMsg'} id={'incorrectMsgEmail'}>{sessionStorage['errMsgEmailSgUp']}</p>

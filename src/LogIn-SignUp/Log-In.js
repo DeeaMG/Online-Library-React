@@ -15,6 +15,9 @@ class LogIn extends Component
 			email: '',
 			pass: '',
 		}
+
+		// sessionStorage['userEmail'] = '';
+		// sessionStorage['userEmail'] = '';
 	}
 
 	getEmail = (event) => 
@@ -98,8 +101,6 @@ class LogIn extends Component
 		}
 
 		else {LogIn.showErrMsg(noInputs, sessionStorage['errNoInputs'], 'errEmailLogIn', 'errPassLogIn', incorrectEmail, incorrectPass);}
-
-		
 	}
 
 	render()
