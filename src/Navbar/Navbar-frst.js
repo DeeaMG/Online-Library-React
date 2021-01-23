@@ -17,7 +17,7 @@ class NavbarFrst extends Component
 					<div className={'navbar-logo'}><NavLink exact to={'/'}><img src={logo} alt={'Not found'} className={'logo-pic'}/></NavLink></div>
 					<div className={'navbar-pages'}>
 						<div className={'profile'}>
-							<div className={'title'}><PersonIcon style={{width: '25px', height: '25px'}}/>Profile</div>
+							<div className={'title'}><PersonIcon/>Profile</div>
 							<div className={'cont'}>
 								<div className={'auth-creare'}><NavLink to={'/log-in'}>&nbsp;&nbsp;Log in</NavLink></div>
 								<div className={'auth-creare'}><NavLink to={'/sign-up'}>&nbsp;&nbsp;Sign&nbsp;up</NavLink></div>

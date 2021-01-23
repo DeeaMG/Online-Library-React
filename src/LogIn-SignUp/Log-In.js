@@ -16,8 +16,8 @@ class LogIn extends Component
 			pass: '',
 		}
 
-		// sessionStorage['userEmail'] = '';
-		// sessionStorage['userEmail'] = '';
+		sessionStorage['username'] = '';
+		sessionStorage['userEmail'] = '';
 	}
 
 	getEmail = (event) => 

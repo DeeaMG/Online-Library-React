@@ -41,36 +41,35 @@ a {
 			font-size: 18px;
 		}
 
-
 		.profile {
 			position: relative;
 			display: inline-block;
-
-			.profile-pic {
-				width: 26px;
-				height: 26px;
-				border-radius: 500px;
-			}
+			align-self: center;
 
 			.title {
-				margin-top: 5px;
 				display: flex;
-				margin-right: 60px;
-				align-items: center;
+				padding-right: 60px;
 				font-size: 18px;
-				height: 80%;
+				width: 60px;
+				height: 4vh;
+				justify-content: center;
+				align-items: center;
+				text-align: center;
 			}
 
 			.cont {
 				display: none;
 				position: absolute;
 				text-align: center;
+				justify-content: center;
+				align-items: center;
 				width: 18vh;
 				height: 5.1vh;
 				background-color: whitesmoke;
 				border-radius: 4px;
 				top: 0;
-				left: -45px;
+				left: 45px;
+				margin-top: 4.5vh;
 
 				.auth-creare {
 					height: 50%;
@@ -79,9 +78,7 @@ a {
 			}
 
 			.title:hover {
-				//background-color: map-get($colors, login-backgrnd);
 				cursor: pointer;
-				//border-radius: 5px;
 			}
 
 			.auth-creare:hover {
@@ -90,21 +87,25 @@ a {
 		}
 
 		.profile:hover {
+			background-color: rgb(223, 222, 222);
+			border-radius: 30px;
+
 			.cont {
 				display: block;
 			}
 		}
 
 		.cos-cumparaturi {
+			width: 110px;
 			height: 80%;
 			align-items: center;
-			border-radius: 5px;
+			justify-content: center;
 		}
 
-		//.cos-cumparaturi:hover {
-		//	background-color: map-get($colors, login-backgrnd);
-		//	border-radius: 3px;
-		//}
+		.cos-cumparaturi:hover {
+			background-color: rgb(223, 222, 222);
+			border-radius: 30px;
+		}
 	}
 }
 

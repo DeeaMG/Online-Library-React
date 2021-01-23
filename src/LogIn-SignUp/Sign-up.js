@@ -62,7 +62,7 @@ class SignUp extends Component
 
 	postRedirect = (addData) => 
 	{
-		// window.location = '/log-in';
+		window.location = '/log-in';
 		this.postData(addData);
 		sessionStorage.clear();
 	}
