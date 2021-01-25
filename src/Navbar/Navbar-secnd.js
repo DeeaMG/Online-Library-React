@@ -21,7 +21,7 @@ class NavbarSecnd extends Component
 							<div className={'produse-continut'} id={'continut'}> </div>
 						</div>
 					</div>
-					<div className={'contact'}><NavLink to={'/contact'}><HelpIcon className={'help-icon'}/>Contact</NavLink></div>
+					{/* <div className={'contact'}><NavLink to={'/contact'}><HelpIcon className={'help-icon'}/>Contact</NavLink></div> */}
 				</div>
 			</div>
 		</Router>

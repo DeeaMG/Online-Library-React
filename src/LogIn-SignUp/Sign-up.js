@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 import './Log-In.scss';
 import './Log-In';
-import EmailIcon from "@material-ui/icons/Email";
-import VpnKeyIcon from "@material-ui/icons/VpnKey";
-import PersonIcon from '@material-ui/icons/Person';
 import axios from 'axios';
 import LogIn from "./Log-In";
 
@@ -155,22 +152,22 @@ class SignUp extends Component
 		return (
 		<div className={'creare-cont'}>
 			<form className={'cont'} onSubmit={this.onSubmit}>
-				<h2 className={'customMargin'}>Sign up</h2>
+				<h2 className={'customMargin'}>Create account</h2>
 
 				<div className={'input-box'}>
-					<label><PersonIcon/>Full name</label>
+					<label>Full name</label>
 					<input type={'text'} onChange={this.addName} className={'inputs'}/>
 					<p className={'incorrectMsg'} id={'incorrectMsgName'}>{sessionStorage['errMsgNameSgUp']}</p>
 
-					<label><EmailIcon/>E-mail</label>
+					<label>Email</label>
 					<input type={'email'} onChange={this.addEmail} className={'inputs'}/>
 					<p className={'incorrectMsg'} id={'incorrectMsgEmail'}>{sessionStorage['errMsgEmailSgUp']}</p>
 
-					<label><VpnKeyIcon/>Password</label>
+					<label>Password</label>
 					<input type={'password'} onChange={this.addPass} className={'inputs'}/>
 					<p className={'incorrectMsg'} id={'incorrectMsgPass'}>{sessionStorage['errMsgPassSgUp']}</p>
 
-					<label><VpnKeyIcon/>Verify password</label>
+					<label>Confirm Password</label>
 					<input type={'password'} onChange={this.verifyPass} className={'inputs customMargin'}/>
 
 					<input type='submit' value={'Sign up'} className={'submit'}/>

@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import "./Log-In.scss";
-import EmailIcon from '@material-ui/icons/Email';
-import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import axios from 'axios';
 
 
@@ -16,8 +14,9 @@ class LogIn extends Component
 			pass: '',
 		}
 
-		sessionStorage['username'] = '';
-		sessionStorage['userEmail'] = '';
+		localStorage['userID'] 		= '';
+		localStorage['username'] 	= '';
+		localStorage['userEmail'] 	= '';
 	}
 
 	getEmail = (event) => 
@@ -59,10 +58,10 @@ class LogIn extends Component
 		sessionStorage['errEmailLogIn'] = 'We cannot find an account with that email address';
 
 		// Password error
-		sessionStorage['errPassLogIn'] = 'Your password is incorrect';
+		sessionStorage['errPassLogIn'] 	= 'Your password is incorrect';
 
 		// Empty fields
-		sessionStorage['errNoInputs'] = 'Enter your email and password';
+		sessionStorage['errNoInputs'] 	= 'Enter your email and password';
 
 		if(email && pass)
 		{
@@ -92,6 +91,10 @@ class LogIn extends Component
 							incorrectEmail.innerHTML = '';
 							incorrectPass.innerHTML = '';
 
+							localStorage['userID'] 	= response.data[i]._id;
+							localStorage['username'] 	= response.data[i].username;
+							localStorage['userEmail'] = response.data[i].email;
+
 							window.location = '/';
 						}
 					})
@@ -108,15 +111,15 @@ class LogIn extends Component
 		return (                            
 			<div className='logare'>
 				<form className="cont" onSubmit={this.onSubmit}>
-					<h2>Log in</h2>
+					<h2>Sign-In</h2>
 					<p className={'incorrectMsg customMargin'} id={'noInputs'}>{sessionStorage['errNoInputs']}</p>
 
 					<div className={'input-box'}>
-						<label><EmailIcon/>E-mail</label>
+						<label>Email</label>
 						<input type={'email'} onChange={this.getEmail} className={'inputs'}/>
 						<p className={'incorrectMsg'} id={'incorrectMsgEmail'}>{sessionStorage['errMailLogIn']}</p>
 
-						<label><VpnKeyIcon/>Password</label>
+						<label>Password</label>
 						<input type={'password'} onChange={this.getPass} className={'inputs'}/>
 						<p className={'incorrectMsg customMargin'} id={'incorrectMsgPass'}>{sessionStorage['errPassLogIn']}</p>
 
