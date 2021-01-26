@@ -34,7 +34,7 @@ class NavbarFrst extends Component
 					<div className={'trDropdown'}></div>
 					<div className={'auth-creare'}><NavLink to={'/profile'} className={'text'}>&nbsp;&nbsp;Profile</NavLink></div>
 					<div className={'auth-creare'}><NavLink to={'/orders'} className={'text'}>&nbsp;&nbsp;Orders</NavLink></div>
-					<button className={'auth-creare'} onClick={() => this.logOut()}><NavLink to={'/'} className={'text'}>&nbsp;&nbsp;Log&nbsp;out</NavLink></button>
+					<button className={'auth-creare btn'} onClick={() => this.logOut()}><NavLink to={'/'} className={'text'}>&nbsp;&nbsp;Log&nbsp;out</NavLink></button>
 				</div>
 			);
 		}
@@ -60,10 +60,10 @@ class NavbarFrst extends Component
 					<div className={'navbar-logo'}><NavLink exact to={'/'}><img src={logo} alt={'Not found'} className={'logo-pic'}/></NavLink></div>
 					<div className={'navbar-pages'}>
 						<div className={'profile'}>
-							<div className={'title'}><PersonIcon className={'profileIco'}/><ExpandMoreIcon className={'expandMore'}/></div>
+							<div className={'title'}><PersonIcon className={'profile-Ico'}/><ExpandMoreIcon className={'expandMore'}/></div>
 							{this.dropdownAuth()}
 						</div>
-						<NavLink to={'/coș-cumpărături'} className={'cos-cumparaturi'}><ShoppingCartIcon/></NavLink>
+						<NavLink to={'/coș-cumpărături'} className={'cos-cumparaturi'}><ShoppingCartIcon className={'shopping-cart'}/></NavLink>
 					</div>
 				</div>
 			</div>

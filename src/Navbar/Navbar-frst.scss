@@ -1,8 +1,12 @@
+body {
+	font-family: 'Roboto';
+}
+
 $colors: (
 		nav-backgrnd: rgb(250, 211, 143),
 		dropdown: rgb(252, 213, 152),
 		login-backgrnd: rgb(250, 196, 138),
-		border: 1px solid black
+		border: .2vh solid black
 );
 
 a {
@@ -18,12 +22,12 @@ a {
 
 	.navbar-logo {
 		align-self: center;
-		margin-left: 50px;
+		margin-left: 8vh;
 
 		.logo-pic {
-			width: 35px;
-			height: 35px;
-			border-radius: 5px;
+			width: 5vh;
+			height: 5vh;
+			border-radius: .6vh;
 		}
 	}
 
@@ -38,7 +42,8 @@ a {
 			// margin-right: 60px;
 			display: flex;
 			align-self: center;
-			font-size: 18px;
+			font-size: 2.5vh;
+
 		}
 
 		.profile {
@@ -46,7 +51,7 @@ a {
 			display: flex;
 			align-self: center;
 			justify-content: center;	
-			width: 60px;
+			width: 7vh;
 			height: 80%;
 			margin-right: 3vh;
 			cursor: pointer;
@@ -55,32 +60,39 @@ a {
 				display: none;
 				position: absolute;
 				width: 18vh;
-				height: 8.5vh;
+				height: 12vh;
 				background-color:  #b4b4b4;
 				// border: 0.5pt solid #9c9c9c;
-				border-radius: 5px;
-				top: 4px;
-				left: -8.1vh;
+				border-radius: 0.7vh;
+				top: 1vh;
+				left: -6.2vh;
 				margin-top: 4.5vh;
 				padding-bottom: 1vh;
+				justify-content: center;
+
+				button {
+					background-color: #b4b4b4;
+					border: .1vh solid whitesmoke;
+					font-family: 'Roboto';
+				}
 
 				.trDropdown {
 					position: absolute;
-					top: -1.1vh;
-					left: 12vh;
+					top: -0.8vh;
+					left: 50%;
 					width: 0;
 					height: 0;
-					border-left: 10px solid #00000000;
-					border-right: 10px solid transparent;
-					border-bottom: 10px solid #b4b4b4;
+					border-left: 1vh solid #00000000;
+					border-right: 1vh solid transparent;
+					border-bottom: 1vh solid #b4b4b4;
 				}
 	
 				.auth-creare {
 					align-self: center;
-					height: 4vh;
+					height: 3vh;
 					width: 90%;
 					border: 0.1vh solid whitesmoke;
-					border-radius: 5px;
+					border-radius: .6vh;
 					margin-top: 1vh;
 
 					.text {
@@ -91,28 +103,32 @@ a {
 				.auth-creare:hover {
 					background-color:  whitesmoke; 
 
-				}		
+				}
+				
+				.btn {
+					font-weight: normal;
+				}
 			}
 
 			.title {
 				display: flex;
-				font-size: 20px;
+				font-size: 2vh;
 				justify-content: center;
 				align-items: center;
 
-				.profileIco {
-					font-size: 30px;
+				.profile-Ico {
+					font-size: 3.5vh;
 				}
 
 				.expandMore {
-					font-size: 23px;
+					font-size: 2.5vh;
 				}
 			}
 		}
 
 		.profile:hover {
 			background-color: rgb(223, 222, 222);
-			border-radius: 60px;
+			border-radius: 6vh;
 
 			.dropdownMenu { 
 				display: flex; 
@@ -121,15 +137,19 @@ a {
 		}
 
 		.cos-cumparaturi {
-			width: 50px;
+			width: 6vh;
 			height: 80%;
 			align-items: center;
 			justify-content: center;
+
+			.shopping-cart {
+				font-size: 3vh;
+			}
 		}
 
 		.cos-cumparaturi:hover {
 			background-color: rgb(223, 222, 222);
-			border-radius: 30px;
+			border-radius: 3vh;
 		}
 	}
 }

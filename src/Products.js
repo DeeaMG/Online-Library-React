@@ -51,6 +51,34 @@ class Products extends Component
 					<a href={'https://www.emag.ro/'} target='_blank' rel='noopener noreferrer' onMouseEnter={() => this.mouseEnter('type6')}>Tip6</a>
 				</div>
 
+				<div className={'elem'} id={'type7'}>
+					<a href={'https://www.emag.ro/'} target='_blank' rel='noopener noreferrer' onMouseEnter={() => this.mouseEnter('type7')}>Tip7</a>
+				</div>
+
+				<div className={'elem'} id={'type8'}>
+					<a href={'https://www.emag.ro/'} target='_blank' rel='noopener noreferrer' onMouseEnter={() => this.mouseEnter('type8')}>Tip8</a>
+				</div>
+
+				<div className={'elem'} id={'type9'}>
+					<a href={'https://www.emag.ro/'} target='_blank' rel='noopener noreferrer' onMouseEnter={() => this.mouseEnter('type9')}>Tip9</a>
+				</div>
+
+				<div className={'elem'} id={'type10'}>
+					<a href={'https://www.emag.ro/'} target='_blank' rel='noopener noreferrer' onMouseEnter={() => this.mouseEnter('type10')}>Tip10</a>
+				</div>
+
+				<div className={'elem'} id={'type11'}>
+					<a href={'https://www.emag.ro/'} target='_blank' rel='noopener noreferrer' onMouseEnter={() => this.mouseEnter('type11')}>Tip11</a>
+				</div>
+
+				<div className={'elem'} id={'type12'}>
+					<a href={'https://www.emag.ro/'} target='_blank' rel='noopener noreferrer' onMouseEnter={() => this.mouseEnter('type12')}>Tip12</a>
+				</div>
+
+				<div className={'elem'} id={'type13'}>
+					<a href={'https://www.emag.ro/'} target='_blank' rel='noopener noreferrer' onMouseEnter={() => this.mouseEnter('type13')}>Tip13</a>
+				</div>
+
 			</div>
 		);
 	}
