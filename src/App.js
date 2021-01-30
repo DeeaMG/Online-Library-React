@@ -9,6 +9,7 @@ import CosCumparaturi from "./Cos-Cumparaturi/Cos-Cumparaturi";
 import Contact from "./Contact/Contact";
 import Profile from './Profile/Profile';
 import Orders from './Orders/Orders';
+import Footer from './Footer/Footer';
 
 
 class App extends Component
@@ -17,9 +18,9 @@ class App extends Component
 	{
 		return (
 			<Router forceRefresh={true}>
-				<div className="app">
-					<NavbarFrst/>
+				<>
 					<div className={'pages'}>
+						<NavbarFrst/>
 						<Route exact path={'/'} component={Home}/>
 						<Route path={'/log-in'} component={LogIn}/>
 						<Route path={'/sign-up'} component={SignUp}/>
@@ -27,9 +28,9 @@ class App extends Component
 						<Route path={'/contact'} component={Contact}/>
 						<Route path={'/profile'} component={Profile}/>
 						<Route path={'/orders'} component={Orders}/>
-
 					</div>
-				</div>
+					<Footer className={'Footer'}/>
+				</>
 			</Router>
 		);
 	}

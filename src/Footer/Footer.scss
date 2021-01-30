@@ -1,0 +1,39 @@
+body 
+{
+    position: relative;
+	font-family: 'Roboto';
+}
+
+.footer 
+{
+    display: grid;
+    align-content: center;
+    text-align: center;
+
+    .footer-st
+    {
+        display: flex;
+        align-items: center;
+        background-color: rgba(182, 182, 182, 0.9);
+
+        .contact { margin-left: 40vh; }
+
+        .social-media
+        {
+            display: flex;
+            justify-content: flex-end;
+            width: 50%;
+
+            .media-icon { margin-right: 4vh; }
+
+            .fb { color: rgb(58, 99, 180); }
+            .yt { color: rgb(179, 46, 46); }
+            .ig { color: rgb(168, 46, 115); }
+        }
+    }
+
+    .footer-nd
+    {
+        background-color: rgba(146, 146, 146, 0.9);
+    }
+}

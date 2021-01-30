@@ -1,4 +1,14 @@
-body {
+body
+{
 	font-family: 'Roboto';
 }
 
+.pages
+{
+	flex: 1 0 auto;
+}
+
+.Footer
+{
+	flex-shrink: 0;
+}

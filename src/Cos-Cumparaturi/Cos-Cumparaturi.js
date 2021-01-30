@@ -10,6 +10,50 @@ class CosCumparaturi extends Component
 		<div className="cos">
 			<NavbarSecnd/>
 			<h1>Cumparaturi</h1>
+			<h1>Cumparaturi</h1>
+			<h1>Cumparaturi</h1>
+			<h1>Cumparaturi</h1>
+			<h1>Cumparaturi</h1>
+			<h1>Cumparaturi</h1>
+			<h1>Cumparaturi</h1>
+			<h1>Cumparaturi</h1>
+			<h1>Cumparaturi</h1>
+			<h1>Cumparaturi</h1>
+			<h1>Cumparaturi</h1>
+			<h1>Cumparaturi</h1>
+			<h1>Cumparaturi</h1>
+			<h1>Cumparaturi</h1>
+			<h1>Cumparaturi</h1>
+			<h1>Cumparaturi</h1>
+			<h1>Cumparaturi</h1>
+			<h1>Cumparaturi</h1>
+			<h1>Cumparaturi</h1>
+			<h1>Cumparaturi</h1>
+			<h1>Cumparaturi</h1>
+			<h1>Cumparaturi</h1>
+			<h1>Cumparaturi</h1>
+			<h1>Cumparaturi</h1>
+			<h1>Cumparaturi</h1>
+			<h1>Cumparaturi</h1>
+			<h1>Cumparaturi</h1>
+			<h1>Cumparaturi</h1>
+			<h1>Cumparaturi</h1>
+			<h1>Cumparaturi</h1>
+			<h1>Cumparaturi</h1>
+			<h1>Cumparaturi</h1>
+			<h1>Cumparaturi</h1>
+			<h1>Cumparaturi</h1>
+			<h1>Cumparaturi</h1>
+			<h1>Cumparaturi</h1>
+			<h1>Cumparaturi</h1>
+			<h1>Cumparaturi</h1>
+			<h1>Cumparaturi</h1>
+			<h1>Cumparaturi</h1>
+			<h1>Cumparaturi</h1>
+			<h1>Cumparaturi</h1>
+			<h1>Cumparaturi</h1>
+			<h1>Cumparaturi</h1>
+			<h1>Cumparaturi</h1>
 		</div>
 		);
 	}

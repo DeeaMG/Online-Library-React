@@ -1,6 +1,4 @@
-body {
-	font-family: 'Roboto';
-}
+body { font-family: 'Roboto'; }
 
 $colors: (
 		nav-backgrnd: rgb(250, 211, 143),
@@ -9,44 +7,57 @@ $colors: (
 		border: .2vh solid black
 );
 
-a {
+a 
+{
 	text-decoration: none;
 	color: black;
 }
 
-.navbar-first {
+.navbar-first 
+{
 	display: flex;
-	background-color: whitesmoke;
+	background-color: rgb(245, 245, 245);
 	height: 7vh;
 	border-bottom: map-get($colors, border);
 
-	.navbar-logo {
+	.navbar-logo 
+	{
 		align-self: center;
 		margin-left: 8vh;
 
-		.logo-pic {
+		.logo-pic 
+		{
 			width: 5vh;
 			height: 5vh;
 			border-radius: .6vh;
 		}
+
+		.logo-pic:hover
+		{
+			transform: scale(1.4);
+			transition: transform .4s;
+		}
 	}
 
-	.navbar-pages {
+	.navbar-pages 
+	{
 		display: flex;
 		justify-content: flex-end;
 		align-self: center;
 		width: 90%;
 		height: 100%;
 
-		a {
+		a 
+		{
 			// margin-right: 60px;
 			display: flex;
 			align-self: center;
-			font-size: 2.5vh;
+			font-size: 2vh;
 
 		}
 
-		.profile {
+		.profile 
+		{
 			position: relative;
 			display: flex;
 			align-self: center;
@@ -56,7 +67,8 @@ a {
 			margin-right: 3vh;
 			cursor: pointer;
 
-			.dropdownMenu {
+			.dropdownMenu 
+			{
 				display: none;
 				position: absolute;
 				width: 18vh;
@@ -70,13 +82,15 @@ a {
 				padding-bottom: 1vh;
 				justify-content: center;
 
-				button {
+				button 
+				{
 					background-color: #b4b4b4;
 					border: .1vh solid whitesmoke;
 					font-family: 'Roboto';
 				}
 
-				.trDropdown {
+				.trDropdown 
+				{
 					position: absolute;
 					top: -0.8vh;
 					left: 50%;
@@ -87,7 +101,8 @@ a {
 					border-bottom: 1vh solid #b4b4b4;
 				}
 	
-				.auth-creare {
+				.auth-creare 
+				{
 					align-self: center;
 					height: 3vh;
 					width: 90%;
@@ -95,59 +110,50 @@ a {
 					border-radius: .6vh;
 					margin-top: 1vh;
 
-					.text {
-						justify-content: center;
-					}
+					.text { justify-content: center; }
 				}
 
-				.auth-creare:hover {
-					background-color:  whitesmoke; 
-
-				}
+				.auth-creare:hover { background-color:  whitesmoke; }
 				
-				.btn {
-					font-weight: normal;
-				}
+				.btn { font-weight: normal; }
 			}
 
-			.title {
+			.title 
+			{
 				display: flex;
 				font-size: 2vh;
 				justify-content: center;
 				align-items: center;
 
-				.profile-Ico {
-					font-size: 3.5vh;
-				}
-
-				.expandMore {
-					font-size: 2.5vh;
-				}
+				.profile-Ico { font-size: 3.5vh; }
+				.expandMore { font-size: 2.5vh; }
 			}
 		}
 
-		.profile:hover {
+		.profile:hover
+		{
 			background-color: rgb(223, 222, 222);
 			border-radius: 6vh;
 
-			.dropdownMenu { 
+			.dropdownMenu
+			{ 
 				display: flex; 
 				flex-direction: column;
 			}
 		}
 
-		.cos-cumparaturi {
+		.cos-cumparaturi 
+		{
 			width: 6vh;
 			height: 80%;
 			align-items: center;
 			justify-content: center;
 
-			.shopping-cart {
-				font-size: 3vh;
-			}
+			.shopping-cart { font-size: 3vh; }
 		}
 
-		.cos-cumparaturi:hover {
+		.cos-cumparaturi:hover 
+		{
 			background-color: rgb(223, 222, 222);
 			border-radius: 3vh;
 		}

@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import "./Navbar-frst.scss";
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import PersonIcon from '@material-ui/icons/Person';
-import logo from '../images/logo.gif'
+// import logo from '../images/logo.gif';
+// import logo from '../images/LetteraA.jpg';
+import logo from '../images/LetterA-crem2.png';
 import {BrowserRouter as Router, NavLink} from "react-router-dom";
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
@@ -12,23 +14,22 @@ class NavbarFrst extends Component
 	logOut = () =>
 	{
 		console.log('LOGGED OUT!');
-		localStorage['userID'] 		= '';
-		localStorage['username'] 	= '';
-		localStorage['userEmail'] 	= '';
+		sessionStorage['userID'] 	= '';
+		sessionStorage['username'] 	= '';
+		sessionStorage['userEmail'] = '';
 	}
 
 	dropdownAuth = () =>
 	{
 		console.log('------------------USER DATA------------------');
-		console.log('userID: ', localStorage['userID']);
-		console.log('username: ', localStorage['username']);
-		console.log('userEmail: ', localStorage['userEmail']);
+		console.log('userID: ', sessionStorage['userID']);
+		console.log('username: ', sessionStorage['username']);
+		console.log('userEmail: ', sessionStorage['userEmail']);
 		console.log('----------------END USER DATA----------------');
 
-
-		if(localStorage['userID'])
+		if(sessionStorage['userID'])
 		{
-			console.log('localStorage NOT EMPTY!');
+			console.log('sessionStorage NOT EMPTY!');
 			return (
 				<div className={'dropdownMenu'}>
 					<div className={'trDropdown'}></div>
@@ -40,7 +41,7 @@ class NavbarFrst extends Component
 		}
 		else
 		{
-			console.log('localStorage EMPTY!');
+			console.log('sessionStorage EMPTY!');
 			return (
 				<div className={'dropdownMenu'}>
 					<div className={'trDropdown'}></div>

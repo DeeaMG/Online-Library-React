@@ -14,9 +14,9 @@ class LogIn extends Component
 			pass: '',
 		}
 
-		localStorage['userID'] 		= '';
-		localStorage['username'] 	= '';
-		localStorage['userEmail'] 	= '';
+		sessionStorage['userID'] 	= '';
+		sessionStorage['username'] 	= '';
+		sessionStorage['userEmail'] = '';
 	}
 
 	getEmail = (event) => 
@@ -91,9 +91,9 @@ class LogIn extends Component
 							incorrectEmail.innerHTML = '';
 							incorrectPass.innerHTML = '';
 
-							localStorage['userID'] 	= response.data[i]._id;
-							localStorage['username'] 	= response.data[i].username;
-							localStorage['userEmail'] = response.data[i].email;
+							sessionStorage['userID']	= response.data[i]._id;
+							sessionStorage['username']	= response.data[i].username;
+							sessionStorage['userEmail'] = response.data[i].email;
 
 							window.location = '/';
 						}
