@@ -1,12 +1,10 @@
+import {BrowserRouter as Router, NavLink} from "react-router-dom";
 import React, { Component } from "react";
 import "./Navbar-frst.scss";
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import PersonIcon from '@material-ui/icons/Person';
-// import logo from '../images/logo.gif';
-// import logo from '../images/LetteraA.jpg';
 import logo from '../images/LetterA-crem2.png';
-import {BrowserRouter as Router, NavLink} from "react-router-dom";
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import PersonIcon from '@material-ui/icons/Person';
 
 
 class NavbarFrst extends Component

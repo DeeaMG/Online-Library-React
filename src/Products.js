@@ -71,14 +71,6 @@ class Products extends Component
 					<a href={'https://www.emag.ro/'} target='_blank' rel='noopener noreferrer' onMouseEnter={() => this.mouseEnter('type11')}>Duis minim quis</a>
 				</div>
 
-				<div className={'elem'} id={'type12'}>
-					<a href={'https://www.emag.ro/'} target='_blank' rel='noopener noreferrer' onMouseEnter={() => this.mouseEnter('type12')}>Anim amet nisi</a>
-				</div>
-
-				<div className={'elem'} id={'type13'}>
-					<a href={'https://www.emag.ro/'} target='_blank' rel='noopener noreferrer' onMouseEnter={() => this.mouseEnter('type13')}>Nisi eiusmod veniam</a>
-				</div>
-
 			</div>
 		);
 	}

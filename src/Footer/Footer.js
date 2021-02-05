@@ -14,16 +14,14 @@ class Footer extends Component
 		return (
 			<div className="footer">
                 <div className={'footer-st'}>
-                    <NavLink to={'/contact'} className={'contact'}>Contact</NavLink>
-                    <div className={'social-media'}>
-                        <FacebookIcon className={'media-icon fb'}/>
-                        <YouTubeIcon className={'media-icon yt'}/>
-                        <InstagramIcon className={'media-icon ig'}/>
-                    </div>
-                </div>
-				<div className={'footer-nd'}>
                     <p>Copyright &copy; 2021 Online Library</p>
-				</div>
+                    <div className={'social-media'}>
+                        <a href='https://www.facebook.com/'><FacebookIcon className={'media-icon fb'}/></a>
+                        <a href='https://www.youtube.com/'><YouTubeIcon className={'media-icon yt'}/></a>
+                        <a href='https://www.instagram.com/'><InstagramIcon className={'media-icon ig'}/></a>
+                    </div>
+                    <NavLink to={'/contact'} className={'contact'}>Contact</NavLink>
+                </div>
 			</div>
 		);
 	}
