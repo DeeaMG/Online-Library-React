@@ -1,53 +1,40 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import "./Log-In.scss";
 import axios from 'axios';
+const mongoose = require('mongoose');
 
 
-class LogIn extends Component
+export const showErrMsg = (errShowInput, session, sessionKeyOne, sessionKeyTwo, errInputOne, errInputTwo) =>
 {
-	constructor(props) 
+	errShowInput.innerHTML = session;
+	sessionStorage.removeItem(sessionKeyOne);
+	errInputOne.innerHTML = '';
+	if(sessionKeyTwo) {sessionStorage.removeItem(sessionKeyTwo);}
+	if(errInputTwo) {errInputTwo.innerHTML = '';}
+}
+
+const LogIn = () =>
+{
+	const [email, setEmail] = useState('');
+	const [pass, setPass] = useState('');
+
+	sessionStorage['userID'] 	= '';
+	sessionStorage['username'] 	= '';
+	sessionStorage['userEmail'] = '';
+
+	const getEmail = (event) => 
 	{
-		super(props);
-
-		this.state = {
-			email: '',
-			pass: '',
-		}
-
-		sessionStorage['userID'] 	= '';
-		sessionStorage['username'] 	= '';
-		sessionStorage['userEmail'] = '';
+		setEmail(event.target.value);
 	}
 
-	getEmail = (event) => 
+	const getPass = (event) =>
 	{
-		this.setState({
-			email: event.target.value
-		  });
+		setPass(event.target.value);
 	}
 
-	getPass = (event) => 
-	{
-		this.setState({
-			pass: event.target.value
-		  });
-	}
-
-	static showErrMsg = (errShowInput, session, sessionKeyOne, sessionKeyTwo, errInputOne, errInputTwo) => 
-	{
-		errShowInput.innerHTML = session;
-		sessionStorage.removeItem(sessionKeyOne);
-		errInputOne.innerHTML = '';
-		if(sessionKeyTwo) {sessionStorage.removeItem(sessionKeyTwo);}
-		if(errInputTwo) {errInputTwo.innerHTML = '';}
-	}
-
-	onSubmit = (event) => 
+	const onSubmit = (event) =>
 	{
 		event.preventDefault();
-
-		let email = this.state.email;
-		let pass = this.state.pass;
 
 		// Input fields
 		let incorrectEmail = document.getElementById('incorrectMsgEmail');
@@ -65,7 +52,7 @@ class LogIn extends Component
 
 		if(email && pass)
 		{
-			axios.get('http://localhost:5000/createuser/').then(response => 
+			axios.get('http://localhost:5000/createuser/get-user').then(response => 
 			{
 				console.log(response.data);
 				if (response.data.length)
@@ -75,13 +62,13 @@ class LogIn extends Component
 						// Check if email exist in db
 						if(email !== response.data[i].email)
 						{
-							LogIn.showErrMsg(incorrectEmail, sessionStorage['errEmailLogIn'], 'errPassLogIn', false, incorrectPass, false);
+							showErrMsg(incorrectEmail, sessionStorage['errEmailLogIn'], 'errPassLogIn', false, incorrectPass, false);
 						}
 
 						// Check if password is correct
 						else if(pass !== response.data[i].password)
 						{
-							LogIn.showErrMsg(incorrectPass, sessionStorage['errPassLogIn'], 'errEmailLogIn', false, incorrectEmail, false);
+							showErrMsg(incorrectPass, sessionStorage['errPassLogIn'], 'errEmailLogIn', false, incorrectEmail, false);
 						}
 						
 						// Log in
@@ -96,6 +83,7 @@ class LogIn extends Component
 							sessionStorage['userEmail'] = response.data[i].email;
 
 							window.location = '/';
+							mongoose.disconnect();
 						}
 					})
 				}
@@ -103,32 +91,29 @@ class LogIn extends Component
 			.catch((error) => {console.log('GET ERROR: ', error);})
 		}
 
-		else {LogIn.showErrMsg(noInputs, sessionStorage['errNoInputs'], 'errEmailLogIn', 'errPassLogIn', incorrectEmail, incorrectPass);}
+		else {showErrMsg(noInputs, sessionStorage['errNoInputs'], 'errEmailLogIn', 'errPassLogIn', incorrectEmail, incorrectPass);}
 	}
 
-	render()
-	{
-		return (                            
-			<div className='logare'>
-				<form className="cont" onSubmit={this.onSubmit}>
-					<h2>Sign-In</h2>
-					<p className={'incorrectMsg customMargin'} id={'noInputs'}>{sessionStorage['errNoInputs']}</p>
+	return (                            
+		<div className='logare'>
+			<form className="cont" onSubmit={onSubmit}>
+				<h2>Sign-In</h2>
+				<p className={'incorrectMsg customMargin'} id={'noInputs'}>{sessionStorage['errNoInputs']}</p>
 
-					<div className={'input-box'}>
-						<label>Email</label>
-						<input type={'email'} onChange={this.getEmail} className={'inputs'}/>
-						<p className={'incorrectMsg'} id={'incorrectMsgEmail'}>{sessionStorage['errMailLogIn']}</p>
+				<div className={'input-box'}>
+					<label>Email</label>
+					<input type={'email'} onChange={getEmail} className={'inputs'}/>
+					<p className={'incorrectMsg'} id={'incorrectMsgEmail'}>{sessionStorage['errMailLogIn']}</p>
 
-						<label>Password</label>
-						<input type={'password'} onChange={this.getPass} className={'inputs'}/>
-						<p className={'incorrectMsg customMargin'} id={'incorrectMsgPass'}>{sessionStorage['errPassLogIn']}</p>
+					<label>Password</label>
+					<input type={'password'} onChange={getPass} className={'inputs'}/>
+					<p className={'incorrectMsg customMargin'} id={'incorrectMsgPass'}>{sessionStorage['errPassLogIn']}</p>
 
-						<input type='submit' value={'Log in'} className={'submit'}/>
-					</div>
-				</form>
-			</div>
-		);
-	}
+					<input type='submit' value={'Log in'} className={'submit'}/>
+				</div>
+			</form>
+		</div>
+	);
 }
 
 export default LogIn;

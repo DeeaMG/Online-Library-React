@@ -11,13 +11,16 @@ const userSchema = new Schema({
         type: String,
         unique: true,
     },
-    
+
     password: {
         type: String,
         minlength: 8,
+    },
+
+    timestamp: {
+        type: Date,
     }
 })
 
 const userData = mongoose.model('userData', userSchema);
-
 module.exports = userData;

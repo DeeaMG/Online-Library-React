@@ -1,70 +1,54 @@
-import React, { Component } from "react";
+import React, {useState} from "react";
 import './Log-In.scss';
 import './Log-In';
 import axios from 'axios';
-import LogIn from "./Log-In";
+import {showErrMsg} from "./Log-In";
 
 
-class SignUp extends Component
+const SignUp = () =>
 {
-	constructor(props) 
+	const [name, setName] = useState('');
+	const [email, setEmail] = useState('');
+	const [pass, setPass] = useState('');
+	const [verifyPassword, setVerifyPass] = useState('');
+	
+	const minLengthPass = 8;
+	
+	const addName = (event) =>
 	{
-		super(props);
-
-		this.state = 
-		{
-			name: '',
-			email: '',
-			pass: '',
-			verifyPass: ''
-		}
-
-		this.minLengthPass = 8;
+		setName(event.target.value);
 	}
-
-	addName = (event) => 
+	
+	const addEmail = (event) =>
 	{
-		this.setState({
-			name: event.target.value
-		  });
+		setEmail(event.target.value);
 	}
-
-	addEmail = (event) => 
+	
+	const addPass = (event) =>
 	{
-		this.setState({
-			email: event.target.value
-		  });
+		setPass(event.target.value);
 	}
-
-	addPass = (event) => 
+	
+	const verifyPass = (event) =>
 	{
-		this.setState({
-			pass: event.target.value
-		  });
+		setVerifyPass(event.target.value);
 	}
-
-	verifyPass = (event) => 
+	
+	const postData = (addData) =>
 	{
-		this.setState({
-			verifyPass: event.target.value
-		  });
-	}
-
-	postData = ( addData ) => 
-	{
-		axios.post('http://localhost:5000/createuser/add', addData)
+		axios.post('http://localhost:5000/createuser/post-user', addData)
 		.then(res => console.log(res.data))
 		.catch((error) => {console.log("POST ERROR: ", error);});
 	}
-
-	postRedirect = (addData) => 
+	
+	const postRedirect = (addData) =>
 	{
 		window.location = '/log-in';
-		this.postData(addData);
+		postData(addData);
 		sessionStorage.clear();
 	}
-
-	onSubmit = (event) => 
+	
+	const onSubmit = (event) =>
 	{
 		event.preventDefault();
 		
@@ -72,110 +56,107 @@ class SignUp extends Component
 		let incorrectName = document.getElementById('incorrectMsgName');
 		let incorrectEmail = document.getElementById('incorrectMsgEmail');
 		let incorrectPass = document.getElementById('incorrectMsgPass');
-
+	
 		// Name errors
 		sessionStorage['errMsgNameSgUp'] = 'Enter your name';
-
+	
 		// Email errors
 		sessionStorage['errMsgEmailSgUp'] = 'Email address already in use';
 		sessionStorage['errNoEmail'] = 'Enter your email';
-
+	
 		// Password errors
 		sessionStorage['errMsgPassMatch'] = 'Passwords must match';
 		sessionStorage['errMsgPassLength'] = 'Password must be 8 characters long';
-
-		if(this.state.email && this.state.name)
+	
+		if(email && name)
 		{
-			if(this.state.pass.length < this.minLengthPass) 
+			if(pass.length < minLengthPass) 
 			{
-				LogIn.showErrMsg(incorrectPass, sessionStorage['errMsgPassLength'], 'errMsgEmailSgUp', 'errMsgPassSgUp', incorrectEmail, false);
+				showErrMsg(incorrectPass, sessionStorage['errMsgPassLength'], 'errMsgEmailSgUp', 'errMsgPassSgUp', incorrectEmail, false);
 			}
-
-			else if(this.state.pass === this.state.verifyPass)
+	
+			else if(pass === verifyPassword)
 			{
 				const addData = {
-					username: this.state.name,
-					email: this.state.email,
-					pass: this.state.pass
+					username: name,
+					email: email,
+					pass: pass
 				};
-
+	
 				console.log(addData);
-
-				axios.get('http://localhost:5000/createuser/').then(response => {
+	
+				axios.get('http://localhost:5000/createuser/get-user').then(response => {
 					console.log(response.data);
 					if (response.data.length) 
 					{
 						let foundCount = 0;
-
+	
 						// Verify if email already exist in db
 						response.data.forEach((_, i) => {
-							if(this.state.email === response.data[i].email) {foundCount += 1;}
+							if(email === response.data[i].email) {foundCount += 1;}
 						})
-
+	
 						if(foundCount) 
 						{
-							LogIn.showErrMsg(incorrectEmail, sessionStorage['errMsgEmailSgUp'], 'errMsgPassSgUp', false, incorrectPass, false);
+							showErrMsg(incorrectEmail, sessionStorage['errMsgEmailSgUp'], 'errMsgPassSgUp', false, incorrectPass, false);
 						}
-
-						else {this.postRedirect(addData);};
+	
+						else {postRedirect(addData);};
 					}
-					else {this.postRedirect(addData);};
+					else {postRedirect(addData);};
 				})
 				.catch((error) => {console.log('GET ERROR: ', error);})
 			}
-
+	
 			else 
 			{
-				LogIn.showErrMsg(incorrectPass, sessionStorage['errMsgPassSgUp'], 'errMsgEmailSgUp', false, incorrectEmail, false);
+				showErrMsg(incorrectPass, sessionStorage['errMsgPassSgUp'], 'errMsgEmailSgUp', false, incorrectEmail, false);
 			}
 		}
-
-		else if (!(this.state.email && this.state.name))
+	
+		else if (!(email && name))
 		{
-			LogIn.showErrMsg(incorrectEmail, sessionStorage['errNoEmail'], 'errMsgPassSgUp', false, incorrectPass, false);
-			LogIn.showErrMsg(incorrectName, sessionStorage['errMsgNameSgUp'], 'errMsgPassSgUp', 'errMsgEmailSgUp', incorrectPass, incorrectEmail);
+			showErrMsg(incorrectEmail, sessionStorage['errNoEmail'], 'errMsgPassSgUp', false, incorrectPass, false);
+			showErrMsg(incorrectName, sessionStorage['errMsgNameSgUp'], 'errMsgPassSgUp', 'errMsgEmailSgUp', incorrectPass, incorrectEmail);
 		}
-
-		else if(!this.state.email)
+	
+		else if(!email)
 		{
-			LogIn.showErrMsg(incorrectEmail, sessionStorage['errNoEmail'], 'errMsgPassSgUp', false, incorrectPass, false);
+			showErrMsg(incorrectEmail, sessionStorage['errNoEmail'], 'errMsgPassSgUp', false, incorrectPass, false);
 		}
-
-		else if(!this.state.name)
+	
+		else if(!name)
 		{
-			LogIn.showErrMsg(incorrectName, sessionStorage['errMsgNameSgUp'], 'errMsgPassSgUp', 'errMsgEmailSgUp', incorrectPass, incorrectEmail);
+			showErrMsg(incorrectName, sessionStorage['errMsgNameSgUp'], 'errMsgPassSgUp', 'errMsgEmailSgUp', incorrectPass, incorrectEmail);
 		}
 	}
 
-	render()
-	{
-		return (
-		<div className={'creare-cont'}>
-			<form className={'cont'} onSubmit={this.onSubmit}>
-				<h2 className={'customMargin'}>Create account</h2>
+	return (
+	<div className={'creare-cont'}>
+		<form className={'cont'} onSubmit={onSubmit}>
+			<h2 className={'customMargin'}>Create account</h2>
 
-				<div className={'input-box'}>
-					<label>Full name</label>
-					<input type={'text'} onChange={this.addName} className={'inputs'}/>
-					<p className={'incorrectMsg'} id={'incorrectMsgName'}>{sessionStorage['errMsgNameSgUp']}</p>
+			<div className={'input-box'}>
+				<label>Full name</label>
+				<input type={'text'} onChange={addName} className={'inputs'}/>
+				<p className={'incorrectMsg'} id={'incorrectMsgName'}>{sessionStorage['errMsgNameSgUp']}</p>
 
-					<label>Email</label>
-					<input type={'email'} onChange={this.addEmail} className={'inputs'}/>
-					<p className={'incorrectMsg'} id={'incorrectMsgEmail'}>{sessionStorage['errMsgEmailSgUp']}</p>
+				<label>Email</label>
+				<input type={'email'} onChange={addEmail} className={'inputs'}/>
+				<p className={'incorrectMsg'} id={'incorrectMsgEmail'}>{sessionStorage['errMsgEmailSgUp']}</p>
 
-					<label>Password</label>
-					<input type={'password'} onChange={this.addPass} className={'inputs'}/>
-					<p className={'incorrectMsg'} id={'incorrectMsgPass'}>{sessionStorage['errMsgPassSgUp']}</p>
+				<label>Password</label>
+				<input type={'password'} onChange={addPass} className={'inputs'}/>
+				<p className={'incorrectMsg'} id={'incorrectMsgPass'}>{sessionStorage['errMsgPassSgUp']}</p>
 
-					<label>Confirm Password</label>
-					<input type={'password'} onChange={this.verifyPass} className={'inputs customMargin'}/>
+				<label>Confirm Password</label>
+				<input type={'password'} onChange={verifyPass} className={'inputs customMargin'}/>
 
-					<input type='submit' value={'Sign up'} className={'submit'}/>
-				</div>
-			</form>
-		</div>
-		);
-	}
+				<input type='submit' value={'Sign up'} className={'submit'}/>
+			</div>
+		</form>
+	</div>
+	);
 }
 
 export default SignUp;

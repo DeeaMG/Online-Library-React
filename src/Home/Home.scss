@@ -40,12 +40,15 @@
 
 @mixin prods
 {
-	// display: block;
+	display: block;
+	// flex-direction: column;
 	height: 90%;
 	width: 25vh;
 	margin-right: 2vh;
 	border: 1px solid #fddfac;
-	justify-content: start !important;
+	// justify-content: center;
+	align-items: center;
+	text-align: center;
 }
 
 @mixin image 

@@ -1,62 +1,59 @@
 import './Cos-Cumparaturi.scss';
-import React, { Component } from "react";
+import React from "react";
 import NavbarSecnd from "../Navbar/Navbar-secnd";
 
-class CosCumparaturi extends Component 
+const CosCumparaturi = () =>
 {
-	render() 
-	{
-		return (
-		<div className="cos">
-			<NavbarSecnd/>
-			<h1>Cumparaturi</h1>
-			<h1>Cumparaturi</h1>
-			<h1>Cumparaturi</h1>
-			<h1>Cumparaturi</h1>
-			<h1>Cumparaturi</h1>
-			<h1>Cumparaturi</h1>
-			<h1>Cumparaturi</h1>
-			<h1>Cumparaturi</h1>
-			<h1>Cumparaturi</h1>
-			<h1>Cumparaturi</h1>
-			<h1>Cumparaturi</h1>
-			<h1>Cumparaturi</h1>
-			<h1>Cumparaturi</h1>
-			<h1>Cumparaturi</h1>
-			<h1>Cumparaturi</h1>
-			<h1>Cumparaturi</h1>
-			<h1>Cumparaturi</h1>
-			<h1>Cumparaturi</h1>
-			<h1>Cumparaturi</h1>
-			<h1>Cumparaturi</h1>
-			<h1>Cumparaturi</h1>
-			<h1>Cumparaturi</h1>
-			<h1>Cumparaturi</h1>
-			<h1>Cumparaturi</h1>
-			<h1>Cumparaturi</h1>
-			<h1>Cumparaturi</h1>
-			<h1>Cumparaturi</h1>
-			<h1>Cumparaturi</h1>
-			<h1>Cumparaturi</h1>
-			<h1>Cumparaturi</h1>
-			<h1>Cumparaturi</h1>
-			<h1>Cumparaturi</h1>
-			<h1>Cumparaturi</h1>
-			<h1>Cumparaturi</h1>
-			<h1>Cumparaturi</h1>
-			<h1>Cumparaturi</h1>
-			<h1>Cumparaturi</h1>
-			<h1>Cumparaturi</h1>
-			<h1>Cumparaturi</h1>
-			<h1>Cumparaturi</h1>
-			<h1>Cumparaturi</h1>
-			<h1>Cumparaturi</h1>
-			<h1>Cumparaturi</h1>
-			<h1>Cumparaturi</h1>
-			<h1>Cumparaturi</h1>
-		</div>
-		);
-	}
+	return (
+	<div className="cos">
+		<NavbarSecnd/>
+		<h1>Cumparaturi</h1>
+		<h1>Cumparaturi</h1>
+		<h1>Cumparaturi</h1>
+		<h1>Cumparaturi</h1>
+		<h1>Cumparaturi</h1>
+		<h1>Cumparaturi</h1>
+		<h1>Cumparaturi</h1>
+		<h1>Cumparaturi</h1>
+		<h1>Cumparaturi</h1>
+		<h1>Cumparaturi</h1>
+		<h1>Cumparaturi</h1>
+		<h1>Cumparaturi</h1>
+		<h1>Cumparaturi</h1>
+		<h1>Cumparaturi</h1>
+		<h1>Cumparaturi</h1>
+		<h1>Cumparaturi</h1>
+		<h1>Cumparaturi</h1>
+		<h1>Cumparaturi</h1>
+		<h1>Cumparaturi</h1>
+		<h1>Cumparaturi</h1>
+		<h1>Cumparaturi</h1>
+		<h1>Cumparaturi</h1>
+		<h1>Cumparaturi</h1>
+		<h1>Cumparaturi</h1>
+		<h1>Cumparaturi</h1>
+		<h1>Cumparaturi</h1>
+		<h1>Cumparaturi</h1>
+		<h1>Cumparaturi</h1>
+		<h1>Cumparaturi</h1>
+		<h1>Cumparaturi</h1>
+		<h1>Cumparaturi</h1>
+		<h1>Cumparaturi</h1>
+		<h1>Cumparaturi</h1>
+		<h1>Cumparaturi</h1>
+		<h1>Cumparaturi</h1>
+		<h1>Cumparaturi</h1>
+		<h1>Cumparaturi</h1>
+		<h1>Cumparaturi</h1>
+		<h1>Cumparaturi</h1>
+		<h1>Cumparaturi</h1>
+		<h1>Cumparaturi</h1>
+		<h1>Cumparaturi</h1>
+		<h1>Cumparaturi</h1>
+		<h1>Cumparaturi</h1>
+		<h1>Cumparaturi</h1>
+	</div>
+	);
 }
 
 export default CosCumparaturi;

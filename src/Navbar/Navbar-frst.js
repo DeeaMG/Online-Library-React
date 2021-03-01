@@ -7,9 +7,9 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import PersonIcon from '@material-ui/icons/Person';
 
 
-class NavbarFrst extends Component
+const NavbarFrst = () =>
 {
-	logOut = () =>
+	const logOut = () =>
 	{
 		console.log('LOGGED OUT!');
 		sessionStorage['userID'] 	= '';
@@ -17,7 +17,7 @@ class NavbarFrst extends Component
 		sessionStorage['userEmail'] = '';
 	}
 
-	dropdownAuth = () =>
+	const dropdownAuth = () =>
 	{
 		console.log('------------------USER DATA------------------');
 		console.log('userID: ', sessionStorage['userID']);
@@ -33,7 +33,7 @@ class NavbarFrst extends Component
 					<div className={'trDropdown'}></div>
 					<div className={'auth-creare'}><NavLink to={'/profile'} className={'text'}>&nbsp;&nbsp;Profile</NavLink></div>
 					<div className={'auth-creare'}><NavLink to={'/orders'} className={'text'}>&nbsp;&nbsp;Orders</NavLink></div>
-					<button className={'auth-creare btn'} onClick={() => this.logOut()}><NavLink to={'/'} className={'text'}>&nbsp;&nbsp;Log&nbsp;out</NavLink></button>
+					<button className={'auth-creare btn'} onClick={() => logOut()}><NavLink to={'/'} className={'text'}>&nbsp;&nbsp;Log&nbsp;out</NavLink></button>
 				</div>
 			);
 		}
@@ -50,9 +50,7 @@ class NavbarFrst extends Component
 		}
 	}
 
-	render() 
-	{
-		return (
+	return (
 		<Router forceRefresh={true}>
 			<div className="navbar">
 				<div className={'navbar-first'}>
@@ -60,15 +58,17 @@ class NavbarFrst extends Component
 					<div className={'navbar-pages'}>
 						<div className={'profile'}>
 							<div className={'title'}><PersonIcon className={'profile-Ico'}/><ExpandMoreIcon className={'expandMore'}/></div>
-							{this.dropdownAuth()}
+							{dropdownAuth()}
 						</div>
-						<NavLink to={'/coș-cumpărături'} className={'cos-cumparaturi'}><ShoppingCartIcon className={'shopping-cart'}/></NavLink>
+						<NavLink to={'/coș-cumpărături'} className={'cos-cumparaturi'}>
+							<ShoppingCartIcon className={'shopping-cart'}/>
+							<p className={'cart-prod-num'}><sup>2</sup></p>
+						</NavLink>
 					</div>
 				</div>
 			</div>
 		</Router>
-		);
-	}
+	);
 }
 
 export default NavbarFrst;

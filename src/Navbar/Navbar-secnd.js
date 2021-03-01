@@ -1,13 +1,13 @@
+import React from "react";
 import {BrowserRouter as Router} from "react-router-dom";
-import React, {Component} from "react";
 // import Products from "../Products";
 import './Navbar-secnd.scss';
 import ViewHeadlineIcon from "@material-ui/icons/ViewHeadline";
 
 
-class NavbarSecnd extends Component 
+const NavbarSecnd = () =>
 {
-	mouseEnter = (element) => 
+	const mouseEnter = (element) => 
 	{
 		if (element) 
 		{
@@ -26,13 +26,12 @@ class NavbarSecnd extends Component
 		}
 	}
 
-	mouseLeave = () =>
+	const mouseLeave = () =>
 	{
 		document.getElementById('continut').innerHTML = '';
 	}
-	render() 
-	{
-		return (
+
+	return (
 		<Router forceRefresh={true}>
 			<div className={'navbar-second'}>
 				<div className={'produse'}>
@@ -40,11 +39,11 @@ class NavbarSecnd extends Component
 					<div className={'produse-tipuri'}>
 						<div className={'sidebar'}>
 							<div className={'elem'} id={'type1'}>
-								<a href={'https://www.emag.ro/'} target='_blank' rel='noopener noreferrer' onMouseEnter={() => this.mouseEnter('type1')} onMouseLeave={() => this.mouseLeave()}>Pariatur nulla sunt mollit</a>
+								<a href={'https://www.emag.ro/'} target='_blank' rel='noopener noreferrer' onMouseEnter={() => mouseEnter('type1')} onMouseLeave={() => mouseLeave()}>Pariatur nulla sunt mollit</a>
 							</div>
 
 							<div className={'elem'} id={'type2'}>
-								<a href={'https://www.emag.ro/'} target='_blank' rel='noopener noreferrer' onMouseEnter={() => this.mouseEnter('type2')} onMouseLeave={() => this.mouseLeave()}>Veniam consectetur cupidatat </a>
+								<a href={'https://www.emag.ro/'} target='_blank' rel='noopener noreferrer' onMouseEnter={() => mouseEnter('type2')} onMouseLeave={() => mouseLeave()}>Veniam consectetur cupidatat </a>
 							</div>
 						</div>
 						<div className={'produse-continut'} id={'continut'}></div>
@@ -52,8 +51,7 @@ class NavbarSecnd extends Component
 				</div>
 			</div>
 		</Router>
-		);
-	}	
+	);
 }
 
 export default NavbarSecnd;

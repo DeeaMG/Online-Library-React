@@ -1,21 +1,18 @@
-import React, { Component } from "react";
+import React from "react";
 import NavbarSecnd from "../Navbar/Navbar-secnd";
 import './Profile.scss';
 
 
-class Profile extends Component
+const Profile = () =>
 {
-	render()
-	{
-		return (
-			<div className="profile">
-				<NavbarSecnd/>
-				<div className={'user-profile'}>
-					Heello thheer
-				</div>
+	return (
+		<div className="profile">
+			<NavbarSecnd/>
+			<div className={'user-profile'}>
+				Heello thheer
 			</div>
-		);
-	}
+		</div>
+	);
 }
 
 export default Profile;
