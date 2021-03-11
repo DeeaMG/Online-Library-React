@@ -1,5 +1,4 @@
 import React from "react";
-import Contact from "../Contact/Contact";
 import './Footer.scss';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import YouTubeIcon from '@material-ui/icons/YouTube';

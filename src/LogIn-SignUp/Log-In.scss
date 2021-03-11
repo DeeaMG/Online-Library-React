@@ -2,14 +2,6 @@ body {
 	font-family: 'Roboto';
 }
 
-@mixin incorrectMsg {
-	margin-top: 0;
-	margin-bottom: 25px;
-	color: rgb(206, 24, 24);
-	font-weight: 500;
-	font-size: 13px;
-}
-
 .cont {
 	display: flex;
 	flex-direction: column;
@@ -20,10 +12,6 @@ body {
 	border: 1px solid black;
 	border-radius: 5px;
 	margin: 23vh auto 0 auto;
-
-	.incorrectMsg {
-		@include incorrectMsg();
-	}
 
 	.input-box {
 		display: flex;
@@ -42,6 +30,7 @@ body {
 			width: 220px;
 			margin-top: 5px;
 			border-radius: 10px;
+			cursor: pointer;
 		}
 
 		input:focus {
@@ -56,25 +45,38 @@ body {
 			margin-top: 5px;
 			border-radius: 10px;
 			font-weight: 600;
+
+			.submitBtn {
+				margin-top: 3vh !important;
+			}
 		}
 
 		.inputs {
 			width: 220px;
-		}
-
-		.incorrectMsg {
-			@include incorrectMsg();
+			margin-bottom: 25px;
 		}
 	}
 
 	h2 {
 		text-decoration: underline;
 		margin-bottom: 0;
-
 	}
 
-	.customMargin {
-		margin-bottom: 40px !important;
+	.title {
+		margin-bottom: 1vh !important;
 	}
 
+	.errorBox {
+		display: flex;
+		width: 30vh;
+		background-color: rgb(255, 210, 210);
+		border-radius: .5vh;
+		margin: 1vh 0 4vh 0;
+		justify-content: center;
+
+		.errorMsg {
+			margin: 1vh 0 1vh 0;
+			color: rgb(255, 59, 59);
+		}
+	}
 }

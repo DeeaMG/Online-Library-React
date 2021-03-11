@@ -10,26 +10,31 @@ import Contact from "./Contact/Contact";
 import Profile from './Profile/Profile';
 import Orders from './Orders/Orders';
 import Footer from './Footer/Footer';
+import { AuthProvider } from './AuthContext';
+import PublicRoute from './PublicRoute';
+import PrivateRoute from './PrivateRoute';
 
 
 const App = () =>
 {
 	return (
-		<Router forceRefresh={true}>
-			<>
-				<div className={'pages'}>
-					<NavbarFrst/>
-					<Route exact path={'/'} component={Home}/>
-					<Route path={'/log-in'} component={LogIn}/>
-					<Route path={'/sign-up'} component={SignUp}/>
-					<Route path={'/coș-cumpărături'} component={CosCumparaturi}/>
-					<Route path={'/contact'} component={Contact}/>
-					<Route path={'/profile'} component={Profile}/>
-					<Route path={'/orders'} component={Orders}/>
-				</div>
-				<Footer className={'Footer'}/>
-			</>
-		</Router>
+		<AuthProvider>
+			<Router forceRefresh={true}>
+				<>
+					<div className={'pages'}>
+						<NavbarFrst/>
+						<PublicRoute exact path={'/'} component={Home}/>
+						<PublicRoute path={'/contact'} component={Contact}/>
+						<PublicRoute path={'/coș-cumpărături'} component={CosCumparaturi}/>
+						<PublicRoute restricted={true} path={'/log-in'} component={LogIn}/>
+						<PublicRoute restricted={true} path={'/sign-up'} component={SignUp}/>
+						<PrivateRoute path={'/profile'} component={Profile}/>
+						<PrivateRoute path={'/orders'} component={Orders}/>
+					</div>
+					<Footer className={'Footer'}/>
+				</>
+			</Router>
+		</AuthProvider>
 	);
 }
 

@@ -11,23 +11,14 @@ const NavbarFrst = () =>
 {
 	const logOut = () =>
 	{
-		console.log('LOGGED OUT!');
-		sessionStorage['userID'] 	= '';
-		sessionStorage['username'] 	= '';
-		sessionStorage['userEmail'] = '';
+		sessionStorage.removeItem('userEmail');
 	}
 
 	const dropdownAuth = () =>
 	{
-		console.log('------------------USER DATA------------------');
-		console.log('userID: ', sessionStorage['userID']);
-		console.log('username: ', sessionStorage['username']);
-		console.log('userEmail: ', sessionStorage['userEmail']);
-		console.log('----------------END USER DATA----------------');
-
-		if(sessionStorage['userID'])
+		if(sessionStorage['userEmail'])
 		{
-			console.log('sessionStorage NOT EMPTY!');
+			console.log('LOGGED IN');
 			return (
 				<div className={'dropdownMenu'}>
 					<div className={'trDropdown'}></div>
@@ -37,9 +28,10 @@ const NavbarFrst = () =>
 				</div>
 			);
 		}
+
 		else
 		{
-			console.log('sessionStorage EMPTY!');
+			console.log('LOGGED OUT');
 			return (
 				<div className={'dropdownMenu'}>
 					<div className={'trDropdown'}></div>
