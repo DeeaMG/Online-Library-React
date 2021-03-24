@@ -1,5 +1,5 @@
 import {BrowserRouter as Router, NavLink} from "react-router-dom";
-import React, { Component } from "react";
+import React from "react";
 import "./Navbar-frst.scss";
 import logo from '../images/LetterA-crem2.png';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
@@ -22,9 +22,9 @@ const NavbarFrst = () =>
 			return (
 				<div className={'dropdownMenu'}>
 					<div className={'trDropdown'}></div>
-					<div className={'auth-creare'}><NavLink to={'/profile'} className={'text'}>&nbsp;&nbsp;Profile</NavLink></div>
-					<div className={'auth-creare'}><NavLink to={'/orders'} className={'text'}>&nbsp;&nbsp;Orders</NavLink></div>
-					<button className={'auth-creare btn'} onClick={() => logOut()}><NavLink to={'/'} className={'text'}>&nbsp;&nbsp;Log&nbsp;out</NavLink></button>
+					<div className={'auth-creare'}><NavLink to={'/profile'}>&nbsp;&nbsp;Profile</NavLink></div>
+					<div className={'auth-creare'}><NavLink to={'/orders'}>&nbsp;&nbsp;Orders</NavLink></div>
+					<button className={'auth-creare btn'} onClick={() => logOut()}><NavLink to={'/'}>&nbsp;&nbsp;Log&nbsp;out</NavLink></button>
 				</div>
 			);
 		}
@@ -35,8 +35,8 @@ const NavbarFrst = () =>
 			return (
 				<div className={'dropdownMenu'}>
 					<div className={'trDropdown'}></div>
-					<div className={'auth-creare'}><NavLink to={'/log-in'} className={'text'}>&nbsp;&nbsp;Sign in</NavLink></div>
-					<div className={'auth-creare'}><NavLink to={'/sign-up'} className={'text'}>&nbsp;&nbsp;Create&nbsp;account</NavLink></div>
+					<div className={'auth-creare'}><NavLink to={'/log-in'}>&nbsp;&nbsp;Sign in</NavLink></div>
+					<div className={'auth-creare'}><NavLink to={'/sign-up'}>&nbsp;&nbsp;Create&nbsp;account</NavLink></div>
 				</div>
 			);
 		}

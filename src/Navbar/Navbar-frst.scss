@@ -103,14 +103,14 @@ a
 	
 				.auth-creare 
 				{
+					display: flex;
 					align-self: center;
+					justify-content: center;
 					height: 3vh;
 					width: 90%;
 					border: 0.1vh solid whitesmoke;
 					border-radius: .6vh;
 					margin-top: 1vh;
-
-					.text { justify-content: center; }
 				}
 
 				.auth-creare:hover { background-color:  whitesmoke; }

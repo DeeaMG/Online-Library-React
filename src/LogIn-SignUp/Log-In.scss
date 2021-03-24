@@ -1,3 +1,11 @@
+@mixin infoBox {
+	display: flex;
+	width: 30vh;
+	border-radius: .5vh;
+	margin: 1vh 0 4vh 0;
+	justify-content: center;
+}
+
 body {
 	font-family: 'Roboto';
 }
@@ -55,6 +63,14 @@ body {
 			width: 220px;
 			margin-bottom: 25px;
 		}
+
+		.changePass {
+			cursor: pointer;
+		}
+
+		.changePass:hover {
+			color: rgb(69, 69, 202)
+		}
 	}
 
 	h2 {
@@ -67,16 +83,23 @@ body {
 	}
 
 	.errorBox {
-		display: flex;
-		width: 30vh;
+		@include infoBox();
 		background-color: rgb(255, 210, 210);
-		border-radius: .5vh;
-		margin: 1vh 0 4vh 0;
-		justify-content: center;
 
 		.errorMsg {
 			margin: 1vh 0 1vh 0;
 			color: rgb(255, 59, 59);
+		}
+	}
+
+	.msgBox {
+		@include infoBox();
+		width: 35vh;
+		background-color: rgb(176, 255, 187);
+		
+		.msg {
+			margin: 1vh 0 1vh 0;
+			color: rgb(45, 175, 63);
 		}
 	}
 }

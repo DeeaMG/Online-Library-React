@@ -10,6 +10,7 @@ import Contact from "./Contact/Contact";
 import Profile from './Profile/Profile';
 import Orders from './Orders/Orders';
 import Footer from './Footer/Footer';
+import ResetPassword from './Reset-Password/ResetPassword';
 import { AuthProvider } from './AuthContext';
 import PublicRoute from './PublicRoute';
 import PrivateRoute from './PrivateRoute';
@@ -26,6 +27,7 @@ const App = () =>
 						<PublicRoute exact path={'/'} component={Home}/>
 						<PublicRoute path={'/contact'} component={Contact}/>
 						<PublicRoute path={'/coș-cumpărături'} component={CosCumparaturi}/>
+						<PublicRoute path={'/reset-password'} component={ResetPassword}/>
 						<PublicRoute restricted={true} path={'/log-in'} component={LogIn}/>
 						<PublicRoute restricted={true} path={'/sign-up'} component={SignUp}/>
 						<PrivateRoute path={'/profile'} component={Profile}/>

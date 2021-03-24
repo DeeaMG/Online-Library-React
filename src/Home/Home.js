@@ -74,7 +74,7 @@ const Home = () =>
 
 	const onAddToCart = () =>
 	{
-		
+		console.log(sessionStorage['userEmail']);
 	}
 
 	return (
@@ -94,7 +94,7 @@ const Home = () =>
 										<p className={'author'}>Lorem ipsum</p>
 										<p className={'stock'}>NONE</p>
 										<p className={'price'}>45.67</p>
-										<button className={'add-to-cart'}>Add to cart</button>
+										<button className={'add-to-cart'} onClick={onAddToCart}>Add to cart</button>
 									</div>
 								</div>
 								<div className={'prod-fav'}>
@@ -104,7 +104,7 @@ const Home = () =>
 										<p className={'author'}>Lorem ipsum</p>
 										<p className={'stock'}>NONE</p>
 										<p className={'price'}>456.78</p>
-										<button className={'add-to-cart'}>Add to cart</button>
+										<button className={'add-to-cart'} onClick={onAddToCart}>Add to cart</button>
 									</div>
 								</div>
 								<div className={'prod-fav'}>
@@ -114,7 +114,7 @@ const Home = () =>
 										<p className={'author'}>Lorem ipsum</p>
 										<p className={'stock'}>NONE</p>
 										<p className={'price'}>4564.99</p>
-										<button className={'add-to-cart'}>Add to cart</button>
+										<button className={'add-to-cart'} onClick={onAddToCart}>Add to cart</button>
 									</div>
 								</div>
 								<div className={'prod-fav'}>
@@ -124,7 +124,7 @@ const Home = () =>
 										<p className={'author'}>Lorem ipsum</p>
 										<p className={'stock'}>NONE</p>
 										<p className={'price'}>678</p>
-										<button className={'add-to-cart'}>Add to cart</button>
+										<button className={'add-to-cart'} onClick={onAddToCart}>Add to cart</button>
 									</div>
 								</div>
 							</div>
@@ -144,7 +144,7 @@ const Home = () =>
 										<p className={'author'}>Lorem ipsum</p>
 										<p className={'stock'}>NONE</p>
 										<p className={'price'}>45.67</p>
-										<button className={'add-to-cart'}>Add to cart</button>
+										<button className={'add-to-cart'} onClick={onAddToCart}>Add to cart</button>
 									</div>
 								</div>
 								<div className={'prod-recom'}>
@@ -154,7 +154,7 @@ const Home = () =>
 										<p className={'author'}>Lorem ipsum</p>
 										<p className={'stock'}>NONE</p>
 										<p className={'price'}>456.78</p>
-										<button className={'add-to-cart'}>Add to cart</button>
+										<button className={'add-to-cart'} onClick={onAddToCart}>Add to cart</button>
 									</div>
 								</div>
 								<div className={'prod-recom'}>
@@ -164,7 +164,7 @@ const Home = () =>
 										<p className={'author'}>Lorem ipsum</p>
 										<p className={'stock'}>NONE</p>
 										<p className={'price'}>4564.99</p>
-										<button className={'add-to-cart'}>Add to cart</button>
+										<button className={'add-to-cart'} onClick={onAddToCart}>Add to cart</button>
 									</div>
 								</div>
 								<div className={'prod-recom'}>
@@ -174,7 +174,7 @@ const Home = () =>
 										<p className={'author'}>Lorem ipsum</p>
 										<p className={'stock'}>NONE</p>
 										<p className={'price'}>678</p>
-										<button className={'add-to-cart'}>Add to cart</button>
+										<button className={'add-to-cart'} onClick={onAddToCart}>Add to cart</button>
 									</div>
 								</div>
 							</div>
