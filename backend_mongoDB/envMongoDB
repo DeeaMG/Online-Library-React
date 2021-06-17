@@ -1,0 +1,1 @@
+USERS_URI = "mongodb+srv://deeaMG:sr1Fnm8jcFRJEtv8@cluster0.5apui.mongodb.net/Users?retryWrites=true&w=majority"

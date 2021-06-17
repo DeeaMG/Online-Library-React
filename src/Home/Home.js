@@ -1,16 +1,18 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import NavbarSecnd from "../Navbar/Navbar-secnd";
+import {cartProdCount} from "../Navbar/Navbar-frst";
 import "./Home.scss";
-import image1 from '../images/profile.jpg';
-import image2 from '../images/LetterA.jpg';
-import image3 from '../images/logo.gif';
-import image4 from '../images/LetterA-crem2.png';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+import { db } from "../firebase";
 
 
 const Home = () =>
 {
+	const [books, setBooks] = useState([]);
+	const [loading, setLoading] = useState(false);
+
+	const BOOKS_COLLECTION = db.collection('books');
 	const MAX_PRODS = 4;
 	const POS_MAX = MAX_PRODS - 1;
 	let count_fav = 0;
@@ -72,10 +74,45 @@ const Home = () =>
 		else { setStyle(POS_MAX + count, prodPage, prodsLst); }
 	}
 
-	const onAddToCart = () =>
+	const onAddToCart = (e, bookId) =>
 	{
-		console.log(sessionStorage['userEmail']);
+		e.preventDefault();
+		const storageLst = localStorage.getItem('cart-summary-token') ? JSON.parse(localStorage.getItem('cart-summary-token')) : [];
+		localStorage['cartCount'] = 0;
+		let storageCount = 0;
+
+		for(let i=0; i<books.length; i++)
+		{
+			if(books[i]['id'] === bookId) { storageLst.push(bookId); }
+		}
+		storageCount = storageLst.length;
+		localStorage.setItem('cart-summary-token', JSON.stringify(storageLst));
+		localStorage.setItem('cartCount', storageCount.toString());
+		console.log(localStorage['cart-summary-token']);
 	}
+
+	const getBooks = () =>
+	{
+		setLoading(true);
+		BOOKS_COLLECTION.onSnapshot((query) => 
+		{
+			const BOOKS = [];
+			let book = {};
+			query.forEach((doc) => 
+			{
+				book = doc.data();
+				book = Object.assign({id: doc.id}, book);
+				BOOKS.push(book); 
+			});
+			console.log(BOOKS);
+			setBooks(BOOKS);
+			setLoading(false)
+		})
+	}
+
+	useEffect(() => { getBooks(); }, []);
+
+	if(loading) return (<h1>Loading...</h1>)
 
 	return (
 		<div className="Home">
@@ -87,46 +124,18 @@ const Home = () =>
 						<div className={'favorite-page'}>
 							<a className={'fav-nav-arrow'} href='#' onClick={(e) => onClickLeftArr(e, '.prod-fav')}><NavigateBeforeIcon className={'nav-ico'}/></a>
 							<div className={'fav-box'} id={'fav-box'}>
-								<div className={'prod-fav'}>
-									<img src={image1} alt='Not found'/>
-									<div className={'details'}>
-										<p className={'title'}>Et et ipsum incididunt anim tempor</p>
-										<p className={'author'}>Lorem ipsum</p>
-										<p className={'stock'}>NONE</p>
-										<p className={'price'}>45.67</p>
-										<button className={'add-to-cart'} onClick={onAddToCart}>Add to cart</button>
+								{books.map((book) => (
+									<div className={'prod-fav'} key={book.id} id={'prod-fav'}>
+										<img src={book.url} alt='Not found'/>
+										<div className={'details'}>
+											<p className={'title'}>{book.title}</p>
+											<p className={'author'}>{book.author}</p>
+											<p className={'stock'}>{book.stock}</p>
+											<p className={'price'}>{book.price}</p>
+											<button className={'add-to-cart'} onClick={(e) => onAddToCart(e, book.id)}>Add to cart</button>
+										</div>
 									</div>
-								</div>
-								<div className={'prod-fav'}>
-									<img src={image2} alt='Not found'/>
-									<div className={'details'}>
-										<p className={'title'}>Et et ipsum incididunt anim tempor</p>
-										<p className={'author'}>Lorem ipsum</p>
-										<p className={'stock'}>NONE</p>
-										<p className={'price'}>456.78</p>
-										<button className={'add-to-cart'} onClick={onAddToCart}>Add to cart</button>
-									</div>
-								</div>
-								<div className={'prod-fav'}>
-									<img src={image3} alt='Not found'/>
-									<div className={'details'}>
-										<p className={'title'}>Et et ipsum incididunt anim tempor</p>
-										<p className={'author'}>Lorem ipsum</p>
-										<p className={'stock'}>NONE</p>
-										<p className={'price'}>4564.99</p>
-										<button className={'add-to-cart'} onClick={onAddToCart}>Add to cart</button>
-									</div>
-								</div>
-								<div className={'prod-fav'}>
-									<img src={image4} alt='Not found'/>
-									<div className={'details'}>
-										<p className={'title'}>Et et ipsum incididunt anim tempor</p>
-										<p className={'author'}>Lorem ipsum</p>
-										<p className={'stock'}>NONE</p>
-										<p className={'price'}>678</p>
-										<button className={'add-to-cart'} onClick={onAddToCart}>Add to cart</button>
-									</div>
-								</div>
+								))}
 							</div>
 							<a className={'fav-nav-arrow'} href='#' onClick={(e) => onClickRightArr(e, '.prod-fav')}><NavigateNextIcon className={'nav-ico'}/></a>
 						</div>					
@@ -137,46 +146,18 @@ const Home = () =>
 						<div className={'recom-page'}>
 							<a className={'recom-nav-arrow'} href='#' onClick={(e) => onClickLeftArr(e, '.prod-recom')}><NavigateBeforeIcon className={'nav-ico'}/></a>
 							<div className={'recom-box'} id={'recom-box'}>
-								<div className={'prod-recom'}>
-									<img src={image1} alt='Not found'/>
-									<div className={'details'}>
-										<p className={'title'}>Et et ipsum incididunt anim tempor</p>
-										<p className={'author'}>Lorem ipsum</p>
-										<p className={'stock'}>NONE</p>
-										<p className={'price'}>45.67</p>
-										<button className={'add-to-cart'} onClick={onAddToCart}>Add to cart</button>
+								{books.map((book) => (
+									<div className={'prod-recom'} key={book.id} id={'prod-recom'}>
+										<img src={book.url} alt='Not found'/>
+										<div className={'details'}>
+											<p className={'title'}>{book.title}</p>
+											<p className={'author'}>{book.author}</p>
+											<p className={'stock'}>{book.stock}</p>
+											<p className={'price'}>{book.price}</p>
+											<button className={'add-to-cart'} onClick={(e) => onAddToCart(e, book.id)}>Add to cart</button>
+										</div>
 									</div>
-								</div>
-								<div className={'prod-recom'}>
-									<img src={image2} alt='Not found'/>
-									<div className={'details'}>
-										<p className={'title'}>Et et ipsum incididunt anim tempor</p>
-										<p className={'author'}>Lorem ipsum</p>
-										<p className={'stock'}>NONE</p>
-										<p className={'price'}>456.78</p>
-										<button className={'add-to-cart'} onClick={onAddToCart}>Add to cart</button>
-									</div>
-								</div>
-								<div className={'prod-recom'}>
-									<img src={image3} alt='Not found'/>
-									<div className={'details'}>
-										<p className={'title'}>Et et ipsum incididunt anim tempor</p>
-										<p className={'author'}>Lorem ipsum</p>
-										<p className={'stock'}>NONE</p>
-										<p className={'price'}>4564.99</p>
-										<button className={'add-to-cart'} onClick={onAddToCart}>Add to cart</button>
-									</div>
-								</div>
-								<div className={'prod-recom'}>
-									<img src={image4} alt='Not found'/>
-									<div className={'details'}>
-										<p className={'title'}>Et et ipsum incididunt anim tempor</p>
-										<p className={'author'}>Lorem ipsum</p>
-										<p className={'stock'}>NONE</p>
-										<p className={'price'}>678</p>
-										<button className={'add-to-cart'} onClick={onAddToCart}>Add to cart</button>
-									</div>
-								</div>
+								))}
 							</div>
 							<a className={'recom-nav-arrow'} href='#' onClick={(e) => onClickRightArr(e, '.prod-recom')}><NavigateNextIcon className={'nav-ico'}/></a>
 						</div>

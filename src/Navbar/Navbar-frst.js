@@ -54,7 +54,7 @@ const NavbarFrst = () =>
 						</div>
 						<NavLink to={'/coș-cumpărături'} className={'cos-cumparaturi'}>
 							<ShoppingCartIcon className={'shopping-cart'}/>
-							<p className={'cart-prod-num'}><sup>2</sup></p>
+							<p className={'cart-prod-num'}>{localStorage.getItem('cartCount')}</p>
 						</NavLink>
 					</div>
 				</div>
